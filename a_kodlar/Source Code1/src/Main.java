@@ -23,7 +23,7 @@ public class Main extends JFrame {
         window.setVisible(true);
 
         try {
-            File soundFile = new File("C:\\BEN\\Kodlar\\Proje\\Proje_9_Uni_ProLab2_1\\Source Code\\mp3\\karayip.wav");
+            File soundFile = new File("C:\\BEN\\Kodlar\\Proje\\Proje_9_Uni_ProLab2_1\\a_mp3\\karayip.wav");
             AudioInputStream audioIn = AudioSystem.getAudioInputStream(soundFile);
             Clip clip = AudioSystem.getClip();
             clip.open(audioIn);

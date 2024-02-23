@@ -1,0 +1,114 @@
+package org.efs.demo;
+
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
+import javafx.scene.paint.Color;
+import javafx.stage.Stage;
+
+import java.io.IOException;
+
+
+
+
+public class HelloApplication extends Application {
+    private static final int GENISLIK = 1000;
+    private static final int YUKSEKLIK = 1000;
+    private static final int KARE_YUKSEKLIK = 50;
+    private static final int KARE_GENISLIK = 50;
+    private static final int KARE_BOYUTU = GENISLIK / KARE_YUKSEKLIK;
+    private int engelX;
+    private int engelY;
+
+    private GraphicsContext gc;
+
+    private Image imageEngel;
+
+    private static final String[] HARAKETLI_ENGEL =
+            {"C:\\BEN\\Kodlar\\Proje\\Proje_9_Uni_ProLab2_1\\a_png\\Hareketli Engeller\\kus.png"
+            ,"C:\\BEN\\Kodlar\\Proje\\Proje_9_Uni_ProLab2_1\\a_png\\Hareketli Engeller\\ari.png",};
+    private static final String[] HAZINELER =
+            {"C:\\BEN\\Kodlar\\Proje\\Proje_9_Uni_ProLab2_1\\a_png\\hazine\\altin.png"
+            ,"C:\\BEN\\Kodlar\\Proje\\Proje_9_Uni_ProLab2_1\\a_png\\hazine\\gumus.png"
+            ,"C:\\BEN\\Kodlar\\Proje\\Proje_9_Uni_ProLab2_1\\a_png\\hazine\\zumrut.png"
+            ,"C:\\BEN\\Kodlar\\Proje\\Proje_9_Uni_ProLab2_1\\a_png\\hazine\\bakir.png"};
+    private static final String[] KARAKTER =
+            {"C:\\BEN\\Kodlar\\Proje\\Proje_9_Uni_ProLab2_1\\a_png\\Karakter\\doblo.png"} ;
+    private static final String[] KIS_ENGEL =
+            {"C:\\BEN\\Kodlar\\Proje\\Proje_9_Uni_ProLab2_1\\a_png\\Kış Engelleri\\buz dagi.png"
+            ,"C:\\BEN\\Kodlar\\Proje\\Proje_9_Uni_ProLab2_1\\a_png\\Kış Engelleri\\kutup ayisi.png"
+            ,"C:\\BEN\\Kodlar\\Proje\\Proje_9_Uni_ProLab2_1\\a_png\\Kış Engelleri\\penguen.png"} ;
+
+    private static final String[] YAZ_ENGEL =
+            {"C:\\BEN\\Kodlar\\Proje\\Proje_9_Uni_ProLab2_1\\a_png\\Yaz Engelleri\\agac.png"
+            ,"C:\\BEN\\Kodlar\\Proje\\Proje_9_Uni_ProLab2_1\\a_png\\Yaz Engelleri\\dag.png"
+            ,"C:\\BEN\\Kodlar\\Proje\\Proje_9_Uni_ProLab2_1\\a_png\\Yaz Engelleri\\duvar.png"
+            ,"C:\\BEN\\Kodlar\\Proje\\Proje_9_Uni_ProLab2_1\\a_png\\Yaz Engelleri\\kaya.png"} ;
+    private static final String[] SIS =
+            {"C:\\BEN\\Kodlar\\Proje\\Proje_9_Uni_ProLab2_1\\a_png\\sis\\sis.png"} ;
+
+
+
+
+    public static void main(String[] args) {
+        launch();
+    }
+
+    @Override
+    public void start(Stage primaryStage) throws IOException {
+
+        primaryStage.setTitle("OTONOM HAZİNE AVCISI");
+        Group root = new Group();
+        Canvas canvas = new Canvas(GENISLIK,YUKSEKLIK);
+        root.getChildren().add(canvas);
+        Scene scene = new Scene(root);
+        primaryStage.setScene(scene);
+        primaryStage.show();
+        gc = canvas.getGraphicsContext2D();
+        EngelOlustur();
+        run();
+    }
+
+    private void run(){
+        drawBackground(gc);
+        EngelCiz(gc);
+    }
+
+    private void drawBackground(GraphicsContext gc){
+
+        for(int i = 0; i< KARE_YUKSEKLIK; i++){
+            for (int j = 0; j<KARE_GENISLIK; j++){
+                if((i+j) % 2==0){
+                    gc.setFill(Color.web("#808080"));
+                }else {
+                    gc.setFill(Color.web("#ffffff"));
+                }
+                gc.fillRect( i * KARE_BOYUTU,  j * KARE_BOYUTU, KARE_BOYUTU, KARE_BOYUTU);
+            }
+        }
+
+    }
+
+    private void EngelOlustur(){
+
+            engelX = (int)(Math.random() * KARE_YUKSEKLIK);
+            engelY = (int)(Math.random() * KARE_GENISLIK);
+            imageEngel = new Image(YAZ_ENGEL[(int) (Math.random() * YAZ_ENGEL.length)]);
+
+
+
+    }
+
+    private void EngelCiz(GraphicsContext gc){
+        gc.drawImage(imageEngel,engelX * KARE_BOYUTU,engelY * KARE_BOYUTU,KARE_BOYUTU,KARE_BOYUTU);
+    }
+
+
+
+
+
+}
