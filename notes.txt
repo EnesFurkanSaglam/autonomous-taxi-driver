@@ -1,7 +1,3 @@
-ilk okumada aklıma gelenler
-
-harita boyutuna göre herbir engele hazineye vb random verilebilir.
-
-
-
-
+1- nesne hareket edecek
+2- aynı yerde nesne çıkmayacak 
+3- birden fazla nesne olacak
