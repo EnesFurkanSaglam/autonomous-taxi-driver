@@ -1,6 +1,6 @@
 package org.efs.demo;
 
-public class Engel {
+public class Engel implements Cloneable {
 
     private String ad;
     private String imagePath;
@@ -9,10 +9,9 @@ public class Engel {
     private int engelBoy;
     private int engelGenislik;
 
-
     public Engel(String imagePath,String ad, int engelX, int engelY, int engelBoy, int engelGenislik) {
-        this.engelX = engelX;
-        this.engelY = engelY;
+        this.setEngelX(engelX);
+        this.setEngelY(engelY);
         this.engelBoy = engelBoy;
         this.engelGenislik = engelGenislik;
         this.ad = ad;
@@ -20,9 +19,27 @@ public class Engel {
     }
 
 
+    public int getEngelX() {
+        return engelX;
+    }
 
+    public void setEngelX(int engelX) {
+        this.engelX = engelX;
+    }
 
+    public int getEngelY() {
+        return engelY;
+    }
 
+    public void setEngelY(int engelY) {
+        this.engelY = engelY;
+    }
 
-
+    protected Engel clone(){
+        try {
+            return (Engel) super.clone();
+        } catch (CloneNotSupportedException e) {
+            return null;
+        }
+    }
 }

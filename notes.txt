@@ -1,3 +1,7 @@
-1- nesne hareket edecek
-2- aynı yerde nesne çıkmayacak 
-3- birden fazla nesne olacak
+sıkıntı ney:
+
+-biz şuan engelleri bir defa oluşturduk halbuki ihtiyaç anında istediğimiz kadar oluşturmalıyız 
+
+1-maindeki oluşturma metodlarını sınıflara taşı
+2-hareket işini hallet
+3-rastgele oluşan resimleri belli bir süzene koy (random olayı düzenlenecek)
