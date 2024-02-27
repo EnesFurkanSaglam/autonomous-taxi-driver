@@ -13,16 +13,19 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Random;
 
+import static org.efs.demo.HareketsizEngelYaz.YazEngelOlustur;
+import static org.efs.demo.HareketsizEngelKis.KisEngelOlustur;
+
 public class HelloApplication extends Application {
      static final int GENISLIK = 1000;
      static final int YUKSEKLIK = 1000;
      static final int KARE_YUKSEKLIK = 25;
      static final int KARE_GENISLIK = 25;
-    private static final int KARE_BOYUTU = GENISLIK / KARE_YUKSEKLIK;
+     static final int KARE_BOYUTU = GENISLIK / KARE_YUKSEKLIK;
     private int engelX;
     private int engelY;
 
-    private GraphicsContext gc;
+    static GraphicsContext gc;
 
     private Image imageYazEngel;
     private Image imageKisEngel;
@@ -47,10 +50,11 @@ public class HelloApplication extends Application {
     public static void main(String[] args) {
 
         launch();
+
     }
 
     @Override
-    public void start(Stage primaryStage) {
+    public void start(Stage primaryStage) throws CloneNotSupportedException {
 
         primaryStage.setTitle("OTONOM HAZİNE AVCISI");
 
@@ -64,10 +68,8 @@ public class HelloApplication extends Application {
         gc = canvas.getGraphicsContext2D();
         run();
 
-
         KisEngelOlustur();
-        KisEngelOlustur();
-        KarakterOlustur();
+        YazEngelOlustur();
 
     }
 
@@ -111,8 +113,6 @@ public class HelloApplication extends Application {
         String imagePath = "file:///C:/BEN/Kodlar/Proje/Proje_9_Uni_ProLab2_1/a_png/Karakter/";
         imageKarakter = new Image(imagePath + KARAKTER[0]);
         gc.drawImage(imageKarakter, engelX * KARE_BOYUTU, engelY * KARE_BOYUTU, KARE_BOYUTU, KARE_BOYUTU);
-
-        HareketsizEngelYaz.YazEngelOlustur();
 
     }
 

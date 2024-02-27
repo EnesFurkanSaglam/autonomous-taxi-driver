@@ -14,8 +14,8 @@ public class Engel implements Cloneable {
         this.setEngelY(engelY);
         this.engelBoy = engelBoy;
         this.engelGenislik = engelGenislik;
-        this.ad = ad;
-        this.imagePath = imagePath;
+        this.setAd(ad);
+        this.setImagePath(imagePath);
     }
 
 
@@ -35,11 +35,27 @@ public class Engel implements Cloneable {
         this.engelY = engelY;
     }
 
-    protected Engel clone(){
+    protected Engel clone() throws CloneNotSupportedException {
         try {
             return (Engel) super.clone();
         } catch (CloneNotSupportedException e) {
             return null;
         }
+    }
+
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
+    }
+
+    public String getAd() {
+        return ad;
+    }
+
+    public void setAd(String ad) {
+        this.ad = ad;
     }
 }

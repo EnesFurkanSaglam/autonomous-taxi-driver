@@ -3,9 +3,9 @@ package org.efs.demo;
 import javafx.scene.image.Image;
 
 import java.util.ArrayList;
+import java.util.Random;
 
-import static org.efs.demo.HelloApplication.KARE_GENISLIK;
-import static org.efs.demo.HelloApplication.KARE_YUKSEKLIK;
+import static org.efs.demo.HelloApplication.*;
 
 public class HareketsizEngelYaz extends HareketsizEngel {
 
@@ -14,7 +14,7 @@ public class HareketsizEngelYaz extends HareketsizEngel {
 
     }
 
-    static HareketsizEngelYaz agac = new HareketsizEngelYaz("file:///C:/BEN/Kodlar/Proje/Proje_9_Uni_ProLab2_1/a_png/Yaz Engelleri/",
+    static Engel agac = new HareketsizEngelYaz("file:///C:/BEN/Kodlar/Proje/Proje_9_Uni_ProLab2_1/a_png/Yaz Engelleri/",
             "agac.png",0,0,5,5);
     static Engel dag = new HareketsizEngelYaz("file:///C:/BEN/Kodlar/Proje/Proje_9_Uni_ProLab2_1/a_png/Yaz Engelleri/",
             "dag.png",0,0,5,5);
@@ -25,20 +25,34 @@ public class HareketsizEngelYaz extends HareketsizEngel {
     static Engel gunes = new HareketsizEngelYaz("file:///C:/BEN/Kodlar/Proje/Proje_9_Uni_ProLab2_1/a_png/Yaz Engelleri/",
             "gunes.png",0,0,5,5);
 
+    static Engel[] yazEngelleri = {agac,dag,duvar,kaya,gunes};
+    static ArrayList<HareketsizEngelYaz> hareketsizEngelYazArrayList = new ArrayList<>();
 
 
 
-    public static void YazEngelOlustur() { // 1 tane engel oluşturmaya çalışıyoruz
+    public static void YazEngelOlustur() throws CloneNotSupportedException {
 
 
+        int yazEngelSayisi = yazEngelleri.length;
+
+        for (int i = 0; i<3;i++){
+
+            Random random =new Random();
+            int a = random.nextInt(yazEngelSayisi);
+            HareketsizEngelYaz yerlestirilecekYazEngeli = (HareketsizEngelYaz) yazEngelleri[a].clone();
+            int engelX = (int) (Math.random() * KARE_YUKSEKLIK);
+            int engelY = (int) (Math.random() * KARE_GENISLIK);
+            yerlestirilecekYazEngeli.setEngelX(engelX);
+            yerlestirilecekYazEngeli.setEngelY(engelY);
+            hareketsizEngelYazArrayList.add(yerlestirilecekYazEngeli);
+
+        }
+
+        for (HareketsizEngelYaz hareketsizEngelYaz : hareketsizEngelYazArrayList){
+            Image imageYazEngel = new Image(hareketsizEngelYaz.getImagePath() + hareketsizEngelYaz.getAd());
+            gc.drawImage(imageYazEngel, hareketsizEngelYaz.getEngelX() * KARE_BOYUTU, hareketsizEngelYaz.getEngelY() * KARE_BOYUTU, KARE_BOYUTU, KARE_BOYUTU);
+        }
 
 
-        /*
-        int engelX = (int) (Math.random() * KARE_YUKSEKLIK);
-        int engelY = (int) (Math.random() * KARE_GENISLIK);
-        String imagePath = "file:///C:/BEN/Kodlar/Proje/Proje_9_Uni_ProLab2_1/a_png/Yaz Engelleri/";
-        imageYazEngel = new Image(imagePath + YAZ_ENGEL[(int) (Math.random() * YAZ_ENGEL.length)]);
-        gc.drawImage(imageYazEngel, engelX * KARE_BOYUTU, engelY * KARE_BOYUTU, KARE_BOYUTU, KARE_BOYUTU);
-        */
     }
 }
