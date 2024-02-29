@@ -37,10 +37,10 @@ public class HareketsizEngelYaz extends HareketsizEngel {
 
         for (int i = 0; i<3;i++){
 
-            Random random =new Random();
+            Random random = new Random();
             int a = random.nextInt(yazEngelSayisi);
             HareketsizEngelYaz yerlestirilecekYazEngeli = (HareketsizEngelYaz) yazEngelleri[a].clone();
-            int engelX = (int) (Math.random() * KARE_YUKSEKLIK);
+            int engelX = (int) (Math.random() * KARE_YUKSEKLIK + KARE_YUKSEKLIK/2);
             int engelY = (int) (Math.random() * KARE_GENISLIK);
             yerlestirilecekYazEngeli.setEngelX(engelX);
             yerlestirilecekYazEngeli.setEngelY(engelY);

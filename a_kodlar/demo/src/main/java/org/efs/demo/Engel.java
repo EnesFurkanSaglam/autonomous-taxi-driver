@@ -12,8 +12,8 @@ public class Engel implements Cloneable {
     public Engel(String imagePath,String ad, int engelX, int engelY, int engelBoy, int engelGenislik) {
         this.setEngelX(engelX);
         this.setEngelY(engelY);
-        this.engelBoy = engelBoy;
-        this.engelGenislik = engelGenislik;
+        this.setEngelBoy(engelBoy);
+        this.setEngelGenislik(engelGenislik);
         this.setAd(ad);
         this.setImagePath(imagePath);
     }
@@ -57,5 +57,21 @@ public class Engel implements Cloneable {
 
     public void setAd(String ad) {
         this.ad = ad;
+    }
+
+    public int getEngelBoy() {
+        return engelBoy;
+    }
+
+    public void setEngelBoy(int engelBoy) {
+        this.engelBoy = engelBoy;
+    }
+
+    public int getEngelGenislik() {
+        return engelGenislik;
+    }
+
+    public void setEngelGenislik(int engelGenislik) {
+        this.engelGenislik = engelGenislik;
     }
 }

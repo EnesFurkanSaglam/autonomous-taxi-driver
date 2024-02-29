@@ -5,9 +5,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.efs</groupId>
-    <artifactId>demo</artifactId>
+    <artifactId>ImageSinifi</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <name>demo</name>
+    <name>ImageSinifi</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -38,7 +38,6 @@
             <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
-
     </dependencies>
 
     <build>
@@ -61,7 +60,7 @@
                         <!-- Default configuration for running with: mvn clean javafx:run -->
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>org.efs.demo/org.efs.demo.HelloApplication</mainClass>
+                            <mainClass>org.efs.imagesinifi/org.efs.imagesinifi.HelloApplication</mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
                             <jlinkImageName>app</jlinkImageName>

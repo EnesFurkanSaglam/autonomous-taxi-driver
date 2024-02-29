@@ -2,6 +2,14 @@ sıkıntı ney:
 
 -biz şuan engelleri bir defa oluşturduk halbuki ihtiyaç anında istediğimiz kadar oluşturmalıyız 
 
-1-maindeki oluşturma metodlarını sınıflara taşı
-2-hareket işini hallet
-3-rastgele oluşan resimleri belli bir süzene koy (random olayı düzenlenecek)
+1-maindeki oluşturma metodlarını sınıflara taşı ++
+2-hareket işini hallet   hareket ettirme oolayında image tekrar çiziliyor eski image kaldırılmalı +++
+3-Resimlerin hareketinde sıkınt ıvar
+4-Resimlerin boyutlarında sıkıntı var 
+4-rastgele oluşan resimleri belli bir düzene koy (random olayı düzenlenecek)
+5-sis gelcek kalkacak flnnn
+
+
+not belki 
+--HarketsizEngelYaz ve HareketsizEngelKIş da Image sınıfını kullanıyorum
+muhtmelen ilerlerde harketliEngel Sınıfında olduğu gibi ImageWiew  sınıfını kullanabilirim

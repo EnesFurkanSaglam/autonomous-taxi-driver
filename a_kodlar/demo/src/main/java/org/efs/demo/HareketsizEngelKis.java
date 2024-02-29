@@ -16,7 +16,7 @@ public class HareketsizEngelKis extends HareketsizEngel {
     }
 
     static Engel buzdagi = new HareketsizEngelKis("file:///C:/BEN/Kodlar/Proje/Proje_9_Uni_ProLab2_1/a_png/Kış Engelleri/",
-            "buz dagi.png",(int) 0,0,15,15);
+            "buz dagi.png",0,0,15,15);
     static Engel kutupayisi = new HareketsizEngelKis("file:///C:/BEN/Kodlar/Proje/Proje_9_Uni_ProLab2_1/a_png/Kış Engelleri/",
             "kutup ayisi.png",0,0,5,5);
      static Engel penguen = new HareketsizEngelKis("file:///C:/BEN/Kodlar/Proje/Proje_9_Uni_ProLab2_1/a_png/Kış Engelleri/",
@@ -30,34 +30,26 @@ public class HareketsizEngelKis extends HareketsizEngel {
 
     static ArrayList<HareketsizEngelKis> hareketsizEngelKisArrayList = new ArrayList<>();
 
-    public static void KisEngelOlustur() throws CloneNotSupportedException {
+
+    public static void KisEngelOlustur() throws CloneNotSupportedException { // sol taraf kış
 
         int kisEngelSayisi = kisEngelleri.length;
 
-        for (int j = 0; j < 2;j++){
-
-            Random random =new Random();
+        for (int i = 0;i<3;i++){
+            Random random = new Random();
             int a = random.nextInt(kisEngelSayisi);
-
             HareketsizEngelKis yerlestirilecekKisEngeli = (HareketsizEngelKis) kisEngelleri[a].clone();
-            int engelX = (int) (Math.random() * KARE_YUKSEKLIK);
+            int engelX = (int) (Math.random() * KARE_YUKSEKLIK -   KARE_YUKSEKLIK/2 );
             int engelY = (int) (Math.random() * KARE_GENISLIK);
             yerlestirilecekKisEngeli.setEngelX(engelX);
             yerlestirilecekKisEngeli.setEngelY(engelY);
             hareketsizEngelKisArrayList.add(yerlestirilecekKisEngeli);
-
-
         }
 
         for (HareketsizEngelKis hareketsizEngelKis : hareketsizEngelKisArrayList){
             Image imageKisEngel = new Image(hareketsizEngelKis.getImagePath() + hareketsizEngelKis.getAd());
-            gc.drawImage(imageKisEngel, hareketsizEngelKis.getEngelX() * KARE_BOYUTU, hareketsizEngelKis.getEngelY() * KARE_BOYUTU, KARE_BOYUTU, KARE_BOYUTU);
-
+            gc.drawImage(imageKisEngel,hareketsizEngelKis.getEngelX() * KARE_BOYUTU,hareketsizEngelKis.getEngelY() * KARE_BOYUTU,KARE_BOYUTU,KARE_BOYUTU);
         }
-
-
-
-
     }
 
 
