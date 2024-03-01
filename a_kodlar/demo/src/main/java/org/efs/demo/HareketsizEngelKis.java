@@ -48,7 +48,7 @@ public class HareketsizEngelKis extends HareketsizEngel {
 
         for (HareketsizEngelKis hareketsizEngelKis : hareketsizEngelKisArrayList){
             Image imageKisEngel = new Image(hareketsizEngelKis.getImagePath() + hareketsizEngelKis.getAd());
-            gc.drawImage(imageKisEngel,hareketsizEngelKis.getEngelX() * KARE_BOYUTU,hareketsizEngelKis.getEngelY() * KARE_BOYUTU,KARE_BOYUTU,KARE_BOYUTU);
+            gc.drawImage(imageKisEngel,hareketsizEngelKis.getEngelX() * KARE_BOYUTU,hareketsizEngelKis.getEngelY() * KARE_BOYUTU,KARE_BOYUTU*hareketsizEngelKis.getEngelBoy(),KARE_BOYUTU*hareketsizEngelKis.getEngelGenislik());
         }
     }
 

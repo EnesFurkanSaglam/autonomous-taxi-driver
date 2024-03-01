@@ -35,7 +35,7 @@ public class HareketsizEngelYaz extends HareketsizEngel {
 
         int yazEngelSayisi = yazEngelleri.length;
 
-        for (int i = 0; i<3;i++){
+        for (int i = 0; i<30;i++){
 
             Random random = new Random();
             int a = random.nextInt(yazEngelSayisi);
@@ -50,7 +50,7 @@ public class HareketsizEngelYaz extends HareketsizEngel {
 
         for (HareketsizEngelYaz hareketsizEngelYaz : hareketsizEngelYazArrayList){
             Image imageYazEngel = new Image(hareketsizEngelYaz.getImagePath() + hareketsizEngelYaz.getAd());
-            gc.drawImage(imageYazEngel, hareketsizEngelYaz.getEngelX() * KARE_BOYUTU, hareketsizEngelYaz.getEngelY() * KARE_BOYUTU, KARE_BOYUTU, KARE_BOYUTU);
+            gc.drawImage(imageYazEngel, hareketsizEngelYaz.getEngelX() * KARE_BOYUTU, hareketsizEngelYaz.getEngelY() * KARE_BOYUTU, KARE_BOYUTU*hareketsizEngelYaz.getEngelBoy(), KARE_BOYUTU * hareketsizEngelYaz.getEngelGenislik());
         }
 
 

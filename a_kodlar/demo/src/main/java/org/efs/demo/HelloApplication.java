@@ -22,8 +22,8 @@ public class HelloApplication extends Application{
 
      static final int GENISLIK = 1000;
      static final int YUKSEKLIK = 1000;
-     static final int KARE_YUKSEKLIK = 25;
-     static final int KARE_GENISLIK = 25;
+     static final int KARE_YUKSEKLIK = 30;
+     static final int KARE_GENISLIK = 30;
      static final int KARE_BOYUTU = GENISLIK / KARE_YUKSEKLIK;
 
     static GraphicsContext gc;
