@@ -31,19 +31,32 @@ public class HareketsizEngelKis extends HareketsizEngel {
     static ArrayList<HareketsizEngelKis> hareketsizEngelKisArrayList = new ArrayList<>();
 
 
-    public static void KisEngelOlustur() throws CloneNotSupportedException { // sol taraf kış
+    public static void KisEngelOlustur(Lokasyon lokasyon) throws CloneNotSupportedException { // sol taraf kış
 
         int kisEngelSayisi = kisEngelleri.length;
 
-        for (int i = 0;i<3;i++){
+        for (int i = 0;i<5;i++){
+
             Random random = new Random();
             int a = random.nextInt(kisEngelSayisi);
             HareketsizEngelKis yerlestirilecekKisEngeli = (HareketsizEngelKis) kisEngelleri[a].clone();
-            int engelX = (int) (Math.random() * KARE_YUKSEKLIK -   KARE_YUKSEKLIK/2 );
-            int engelY = (int) (Math.random() * KARE_GENISLIK);
+
+            //sıkıntı var.
+            int engelX = random.nextInt(KARE_GENISLIK / 2 - yerlestirilecekKisEngeli.getEngelGenislik()) + KARE_GENISLIK / 2 + 1;
+
+            int engelY;
+            do{
+                engelY = (int) (Math.random() * KARE_YUKSEKLIK);
+            }while (!(engelY < KARE_YUKSEKLIK - yerlestirilecekKisEngeli.getEngelBoy()));
+
+
             yerlestirilecekKisEngeli.setEngelX(engelX);
             yerlestirilecekKisEngeli.setEngelY(engelY);
             hareketsizEngelKisArrayList.add(yerlestirilecekKisEngeli);
+
+
+            lokasyon.HareketsizEngelKisKordinatYaz(yerlestirilecekKisEngeli.getEngelBoy(),yerlestirilecekKisEngeli.getEngelGenislik(),
+                    yerlestirilecekKisEngeli.getEngelX() + 1,yerlestirilecekKisEngeli.getEngelY() + 1);
         }
 
         for (HareketsizEngelKis hareketsizEngelKis : hareketsizEngelKisArrayList){

@@ -1,8 +1,6 @@
-package org.efs.demo;
-import static org.efs.demo.HelloApplication.*;
 
 public class Lokasyon {
-        // Kodinatlar sol üsten itibaren yazılıyor
+    // Kodinatlar sol üsten itibaren yazılıyor
 
     /*
 
@@ -18,7 +16,7 @@ public class Lokasyon {
 
     private int X;
     private int Y;
-    private int [][] KORDINATLAR = new int[KARE_YUKSEKLIK][KARE_GENISLIK];
+    private int [][] KORDINATLAR = new int[25][25];
 
 
     public void KarakterKordinatYaz(int boy,int genislik,int solUstKordinatX,int solUstKordinatY){
@@ -45,7 +43,7 @@ public class Lokasyon {
 
         for (int i = y1; i <= y2; i++) {
             for (int j = x1; j <= x2; j++) {
-                this.KORDINATLAR[i][j] = 5 ;
+                KORDINATLAR[i][j] = 5 ;
             }
         }
 
@@ -63,10 +61,9 @@ public class Lokasyon {
 
         for (int i = y1; i <= y2; i++) {
             for (int j = x1; j <= x2; j++) {
-                this.KORDINATLAR[i][j] = 3 ;
+                KORDINATLAR[i][j] = 3 ;
             }
         }
-
 
     }
     public void HareketsizEngelKisKordinatYaz(int boy,int genislik,int solUstKordinatX,int solUstKordinatY){
@@ -78,21 +75,20 @@ public class Lokasyon {
 
         for (int i = y1; i <= y2; i++) {
             for (int j = x1; j <= x2; j++) {
-                this.KORDINATLAR[i][j] = 4;
+                KORDINATLAR[i][j] = 4;
             }
         }
-
-
 
     }
     public void HaritaMatrisYazdir(){
 
-        for (int i = 0;i<KARE_YUKSEKLIK;i++){
-            for (int j = 0;j<KARE_GENISLIK;j++){
-                System.out.print(this.KORDINATLAR[i][j]);
+        for (int i = 0;i<25;i++){
+            for (int j = 0;j<25;j++){
+                System.out.print(KORDINATLAR[i][j]);
             }
             System.out.println();
         }
     }
 
 }
+

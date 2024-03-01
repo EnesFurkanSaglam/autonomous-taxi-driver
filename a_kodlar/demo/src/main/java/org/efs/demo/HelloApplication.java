@@ -5,25 +5,18 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
-import java.util.Timer;
-
-
-import static org.efs.demo.HareketliEngel.hareketEttir;
-import static org.efs.demo.HareketliEngel.hareketliEngelOlustur;
 import static org.efs.demo.HareketsizEngelKis.KisEngelOlustur;
 import static org.efs.demo.HareketsizEngelYaz.YazEngelOlustur;
-
 
 public class HelloApplication extends Application{
 
      static final int GENISLIK = 1000;
      static final int YUKSEKLIK = 1000;
-     static final int KARE_YUKSEKLIK = 30;
-     static final int KARE_GENISLIK = 30;
+     static final int KARE_YUKSEKLIK = 15;
+     static final int KARE_GENISLIK = 15;
      static final int KARE_BOYUTU = GENISLIK / KARE_YUKSEKLIK;
 
     static GraphicsContext gc;
@@ -43,16 +36,22 @@ public class HelloApplication extends Application{
         primaryStage.setScene(scene);
         primaryStage.show();
         gc = canvas.getGraphicsContext2D();
+
         run();
-        YazEngelOlustur();
-        KisEngelOlustur();
-        hareketliEngelOlustur(root);
-        hareketEttir();
+
+        Lokasyon lokasyon = new Lokasyon();
+
+        YazEngelOlustur(lokasyon);
+
+        //KisEngelOlustur(lokasyon);
+        //hareketliEngelOlustur(root);
+        //hareketEttir();
+
+        lokasyon.HaritaMatrisYazdir();
 
     }
     private void run() {
         drawBackground(gc);
-
     }
     private void drawBackground(GraphicsContext gc) {
         for (int i = 0; i < KARE_YUKSEKLIK; i++) {

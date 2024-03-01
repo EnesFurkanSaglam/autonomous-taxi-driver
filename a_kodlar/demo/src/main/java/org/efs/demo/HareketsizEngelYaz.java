@@ -30,27 +30,38 @@ public class HareketsizEngelYaz extends HareketsizEngel {
 
 
 
-    public static void YazEngelOlustur() throws CloneNotSupportedException {
+    public static void YazEngelOlustur(Lokasyon lokasyon) throws CloneNotSupportedException {
 
 
         int yazEngelSayisi = yazEngelleri.length;
 
-        for (int i = 0; i<30;i++){
+        for (int i = 0; i<1;i++){
 
             Random random = new Random();
             int a = random.nextInt(yazEngelSayisi);
             HareketsizEngelYaz yerlestirilecekYazEngeli = (HareketsizEngelYaz) yazEngelleri[a].clone();
-            int engelX = (int) (Math.random() * KARE_YUKSEKLIK + KARE_YUKSEKLIK/2);
-            int engelY = (int) (Math.random() * KARE_GENISLIK);
+            int engelX = random.nextInt(KARE_GENISLIK / 2 - yerlestirilecekYazEngeli.getEngelGenislik()) + KARE_GENISLIK / 2 + 1;
+
+            int engelY;
+
+            do{
+                engelY = (int) (Math.random() * KARE_YUKSEKLIK);
+            }while (!(engelY < KARE_YUKSEKLIK - yerlestirilecekYazEngeli.getEngelBoy()));
+
+
             yerlestirilecekYazEngeli.setEngelX(engelX);
             yerlestirilecekYazEngeli.setEngelY(engelY);
             hareketsizEngelYazArrayList.add(yerlestirilecekYazEngeli);
+
+            lokasyon.HareketsizEngelYazKordinatYaz(yerlestirilecekYazEngeli.getEngelBoy(),
+                    yerlestirilecekYazEngeli.getEngelGenislik(),yerlestirilecekYazEngeli.getEngelX()+1,yerlestirilecekYazEngeli.getEngelY()+1);
 
         }
 
         for (HareketsizEngelYaz hareketsizEngelYaz : hareketsizEngelYazArrayList){
             Image imageYazEngel = new Image(hareketsizEngelYaz.getImagePath() + hareketsizEngelYaz.getAd());
             gc.drawImage(imageYazEngel, hareketsizEngelYaz.getEngelX() * KARE_BOYUTU, hareketsizEngelYaz.getEngelY() * KARE_BOYUTU, KARE_BOYUTU*hareketsizEngelYaz.getEngelBoy(), KARE_BOYUTU * hareketsizEngelYaz.getEngelGenislik());
+
         }
 
 
