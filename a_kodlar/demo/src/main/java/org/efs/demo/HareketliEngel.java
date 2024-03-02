@@ -23,7 +23,7 @@ public class HareketliEngel extends Engel {
     static Engel kus = new HareketliEngel("file:///C:/BEN/Kodlar/Proje/Proje_9_Uni_ProLab2_1/a_png/Hareketli Engeller/",
             "kus.png", 0, 0, 2, 2, "Y", 5);
     static Engel ari = new HareketliEngel("file:///C:/BEN/Kodlar/Proje/Proje_9_Uni_ProLab2_1/a_png/Hareketli Engeller/",
-            "ari.png", 0, 0, 6, 6, "X", 3);
+            "ari.png", 0, 0, 3, 3, "X", 3);
     static Engel[] hareketliEngeller = {kus, ari};
     private static List<HareketliEngel> hareketliEngelArrayList = new ArrayList<>();
     private static List<ImageView> hareketliEngelImageViews = new ArrayList<>();

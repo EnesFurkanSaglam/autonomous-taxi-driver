@@ -1,6 +1,8 @@
 package org.efs.demo;
 
+import javafx.scene.Group;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -16,7 +18,7 @@ public class HareketsizEngelKis extends HareketsizEngel {
     }
 
     static Engel buzdagi = new HareketsizEngelKis("file:///C:/BEN/Kodlar/Proje/Proje_9_Uni_ProLab2_1/a_png/Kış Engelleri/",
-            "buz dagi.png",0,0,15,15);
+            "buz dagi.png",0,0,6,6);
     static Engel kutupayisi = new HareketsizEngelKis("file:///C:/BEN/Kodlar/Proje/Proje_9_Uni_ProLab2_1/a_png/Kış Engelleri/",
             "kutup ayisi.png",0,0,5,5);
      static Engel penguen = new HareketsizEngelKis("file:///C:/BEN/Kodlar/Proje/Proje_9_Uni_ProLab2_1/a_png/Kış Engelleri/",
@@ -31,37 +33,77 @@ public class HareketsizEngelKis extends HareketsizEngel {
     static ArrayList<HareketsizEngelKis> hareketsizEngelKisArrayList = new ArrayList<>();
 
 
-    public static void KisEngelOlustur(Lokasyon lokasyon) throws CloneNotSupportedException { // sol taraf kış
+    public static void KisEngelOlustur(Lokasyon lokasyon, Group root) throws CloneNotSupportedException { // sol taraf kış
 
-        int kisEngelSayisi = kisEngelleri.length;
-
-        for (int i = 0;i<5;i++){
-
-            Random random = new Random();
-            int a = random.nextInt(kisEngelSayisi);
-            HareketsizEngelKis yerlestirilecekKisEngeli = (HareketsizEngelKis) kisEngelleri[a].clone();
-
-            //sıkıntı var.
-            int engelX = random.nextInt(KARE_GENISLIK / 2 - yerlestirilecekKisEngeli.getEngelGenislik()) + KARE_GENISLIK / 2 + 1;
-
-            int engelY;
-            do{
-                engelY = (int) (Math.random() * KARE_YUKSEKLIK);
-            }while (!(engelY < KARE_YUKSEKLIK - yerlestirilecekKisEngeli.getEngelBoy()));
+        int kontrol;
 
 
-            yerlestirilecekKisEngeli.setEngelX(engelX);
-            yerlestirilecekKisEngeli.setEngelY(engelY);
-            hareketsizEngelKisArrayList.add(yerlestirilecekKisEngeli);
+
+        for (int i = 0;i<10;i++){
+
+            while (true) {
 
 
-            lokasyon.HareketsizEngelKisKordinatYaz(yerlestirilecekKisEngeli.getEngelBoy(),yerlestirilecekKisEngeli.getEngelGenislik(),
-                    yerlestirilecekKisEngeli.getEngelX() + 1,yerlestirilecekKisEngeli.getEngelY() + 1);
+                int kisEngelSayisi = kisEngelleri.length;
+                Random random = new Random();
+                int a = random.nextInt(kisEngelSayisi);
+                HareketsizEngelKis yerlestirilecekKisEngeli = (HareketsizEngelKis) kisEngelleri[a].clone();
+
+
+                int engelX;
+                int engelY;
+
+                do {
+                    engelX = random.nextInt(KARE_GENISLIK / 2);
+                } while (!(engelX + yerlestirilecekKisEngeli.getEngelGenislik() < KARE_GENISLIK / 2));
+
+
+                do {
+                    engelY = (int) (Math.random() * KARE_YUKSEKLIK);
+                } while (!(engelY < KARE_YUKSEKLIK - yerlestirilecekKisEngeli.getEngelBoy()));
+
+
+                int x1 = engelX;
+                int x2 = engelX + yerlestirilecekKisEngeli.getEngelGenislik() - 1;
+                int x3 = engelX + yerlestirilecekKisEngeli.getEngelGenislik() - 1;
+                int x4 = engelX;
+
+                int y1 = engelY;
+                int y2 = engelY;
+                int y3 = engelY + yerlestirilecekKisEngeli.getEngelBoy() - 1;
+                int y4 = engelY + yerlestirilecekKisEngeli.getEngelBoy() - 1;
+
+                kontrol = lokasyon.Kontrol(x1, x2, x3, x4, y1, y2, y3, y4); // 1 ise devam -1 ise başa dön
+
+                if (kontrol == 1) {
+
+                    yerlestirilecekKisEngeli.setEngelX(engelX);
+                    yerlestirilecekKisEngeli.setEngelY(engelY);
+
+                    lokasyon.HareketsizEngelKisKordinatYaz(yerlestirilecekKisEngeli.getEngelBoy(), yerlestirilecekKisEngeli.getEngelGenislik()
+                            ,yerlestirilecekKisEngeli.getEngelX() + 1, yerlestirilecekKisEngeli.getEngelY() + 1);
+
+                    hareketsizEngelKisArrayList.add(yerlestirilecekKisEngeli);
+
+                    break;
+                }
+            }
+
+
         }
 
         for (HareketsizEngelKis hareketsizEngelKis : hareketsizEngelKisArrayList){
+
             Image imageKisEngel = new Image(hareketsizEngelKis.getImagePath() + hareketsizEngelKis.getAd());
-            gc.drawImage(imageKisEngel,hareketsizEngelKis.getEngelX() * KARE_BOYUTU,hareketsizEngelKis.getEngelY() * KARE_BOYUTU,KARE_BOYUTU*hareketsizEngelKis.getEngelBoy(),KARE_BOYUTU*hareketsizEngelKis.getEngelGenislik());
+            ImageView imageView = new ImageView(imageKisEngel);
+
+            imageView.setFitWidth(KARE_BOYUTU * hareketsizEngelKis.getEngelGenislik());
+            imageView.setFitHeight(KARE_BOYUTU * hareketsizEngelKis.getEngelBoy());
+            imageView.setX(hareketsizEngelKis.getEngelX() * KARE_BOYUTU);
+            imageView.setY(hareketsizEngelKis.getEngelY() * KARE_BOYUTU);
+
+            //ilerde arraylist<ImageView> oluşuturulabilir
+            root.getChildren().add(imageView);
         }
     }
 

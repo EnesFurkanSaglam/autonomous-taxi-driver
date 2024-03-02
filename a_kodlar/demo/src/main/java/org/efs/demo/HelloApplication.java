@@ -15,8 +15,8 @@ public class HelloApplication extends Application{
 
      static final int GENISLIK = 1000;
      static final int YUKSEKLIK = 1000;
-     static final int KARE_YUKSEKLIK = 15;
-     static final int KARE_GENISLIK = 15;
+     static final int KARE_YUKSEKLIK = 50;
+     static final int KARE_GENISLIK = 50;
      static final int KARE_BOYUTU = GENISLIK / KARE_YUKSEKLIK;
 
     static GraphicsContext gc;
@@ -41,12 +41,10 @@ public class HelloApplication extends Application{
 
         Lokasyon lokasyon = new Lokasyon();
 
-        YazEngelOlustur(lokasyon);
-
-        //KisEngelOlustur(lokasyon);
+        YazEngelOlustur(lokasyon,root);
+        KisEngelOlustur(lokasyon,root);
         //hareketliEngelOlustur(root);
         //hareketEttir();
-
         lokasyon.HaritaMatrisYazdir();
 
     }

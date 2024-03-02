@@ -1,4 +1,6 @@
 package org.efs.demo;
+import java.util.ArrayList;
+
 import static org.efs.demo.HelloApplication.*;
 
 public class Lokasyon {
@@ -30,7 +32,7 @@ public class Lokasyon {
 
         for (int i = y1; i <= y2; i++) {
             for (int j = x1; j <= x2; j++) {
-                KORDINATLAR[i][j] = 1 ;
+                KORDINATLAR[i][j] = 1;
             }
         }
 
@@ -54,21 +56,20 @@ public class Lokasyon {
         //Hareketten mütevellit sıkıtı çıkacak
 
     }
-    public void HareketsizEngelYazKordinatYaz(int boy,int genislik,int solUstKordinatX,int solUstKordinatY){
+    public void HareketsizEngelYazKordinatYaz(int boy,int genislik,int solUstKordinatX,int solUstKordinatY) {
 
-        int x1 = solUstKordinatX- 1;
-        int x2 = solUstKordinatX + genislik -2;
-        int y1 = solUstKordinatY -1;
-        int y2 = solUstKordinatY + boy -2 ;
+        int x1 = solUstKordinatX - 1;
+        int x2 = solUstKordinatX + genislik - 2;
+        int y1 = solUstKordinatY - 1;
+        int y2 = solUstKordinatY + boy - 2;
 
         for (int i = y1; i <= y2; i++) {
             for (int j = x1; j <= x2; j++) {
-                this.KORDINATLAR[i][j] = 3 ;
+                this.KORDINATLAR[i][j] = 3;
             }
         }
-
-
     }
+
     public void HareketsizEngelKisKordinatYaz(int boy,int genislik,int solUstKordinatX,int solUstKordinatY){
 
         int x1 = solUstKordinatX- 1;
@@ -83,7 +84,6 @@ public class Lokasyon {
         }
 
 
-
     }
     public void HaritaMatrisYazdir(){
 
@@ -94,5 +94,20 @@ public class Lokasyon {
             System.out.println();
         }
     }
+
+
+    public int Kontrol(int x1, int x2, int x3, int x4, int y1, int y2, int y3, int y4) {
+
+        for (int i = x1; i <= x2; i++) {
+            for (int j = y1; j <= y4; j++) {
+                if (this.KORDINATLAR[j][i] != 0) {
+                    return -1;
+                }
+            }
+        }
+
+        return 1;
+    }
+
 
 }
