@@ -8,8 +8,11 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
+import static org.efs.demo.HareketliEngel.hareketliEngelOlustur;
 import static org.efs.demo.HareketsizEngelKis.KisEngelOlustur;
 import static org.efs.demo.HareketsizEngelYaz.YazEngelOlustur;
+import static org.efs.demo.Hazine.HazineOlustur;
+import static org.efs.demo.Karakter.KarakterOlustur;
 
 public class HelloApplication extends Application{
 
@@ -41,9 +44,12 @@ public class HelloApplication extends Application{
 
         Lokasyon lokasyon = new Lokasyon();
 
+        hareketliEngelOlustur(lokasyon,root);
         YazEngelOlustur(lokasyon,root);
         KisEngelOlustur(lokasyon,root);
-        //hareketliEngelOlustur(root);
+        HazineOlustur(lokasyon,root);
+        KarakterOlustur(lokasyon,root);
+
         //hareketEttir();
         lokasyon.HaritaMatrisYazdir();
 

@@ -23,23 +23,89 @@ public class HareketliEngel extends Engel {
     static Engel kus = new HareketliEngel("file:///C:/BEN/Kodlar/Proje/Proje_9_Uni_ProLab2_1/a_png/Hareketli Engeller/",
             "kus.png", 0, 0, 2, 2, "Y", 5);
     static Engel ari = new HareketliEngel("file:///C:/BEN/Kodlar/Proje/Proje_9_Uni_ProLab2_1/a_png/Hareketli Engeller/",
-            "ari.png", 0, 0, 3, 3, "X", 3);
-    static Engel[] hareketliEngeller = {kus, ari};
+            "ari.png", 0, 0, 2, 2, "X", 3);
+    static Engel[] hareketliEngeller = {kus,ari};
     private static List<HareketliEngel> hareketliEngelArrayList = new ArrayList<>();
     private static List<ImageView> hareketliEngelImageViews = new ArrayList<>();
 
 
 
-    public static void hareketliEngelOlustur(Group root) throws CloneNotSupportedException {
-        for (int i = 0; i < 5; i++) {
+    public static void hareketliEngelOlustur(Lokasyon lokasyon,Group root) throws CloneNotSupportedException {
+
+        for (int i = 0; i < 10; i++) {
+            int kontrol;
+
+            while(true) {
+
             Random random = new Random();
             int a = random.nextInt(hareketliEngeller.length);
             HareketliEngel yerlestirilecekHareketliEngel = (HareketliEngel) hareketliEngeller[a].clone();
-            int engelX = (int) (Math.random() * KARE_YUKSEKLIK);
-            int engelY = (int) (Math.random() * KARE_GENISLIK);
-            yerlestirilecekHareketliEngel.setEngelX(engelX);
-            yerlestirilecekHareketliEngel.setEngelY(engelY);
-            hareketliEngelArrayList.add(yerlestirilecekHareketliEngel);
+
+            int engelX;
+            int engelY;
+
+
+            do {
+
+                engelX = random.nextInt(KARE_GENISLIK);
+
+            } while (!(engelX - yerlestirilecekHareketliEngel.hareketBoyutu > 0 &&
+                    KARE_GENISLIK - engelX > yerlestirilecekHareketliEngel.hareketBoyutu + yerlestirilecekHareketliEngel.getEngelGenislik()));
+
+
+            do {
+
+                engelY = random.nextInt(KARE_YUKSEKLIK);
+
+            } while (!(engelY - yerlestirilecekHareketliEngel.hareketBoyutu > 0
+                    && engelY + yerlestirilecekHareketliEngel.hareketBoyutu + yerlestirilecekHareketliEngel.getEngelBoy() < KARE_YUKSEKLIK));
+
+
+            if (yerlestirilecekHareketliEngel.hareketYonu.equals("X"))
+            {
+                int x1 = engelX - yerlestirilecekHareketliEngel.hareketBoyutu;
+                int x2 = engelX + yerlestirilecekHareketliEngel.hareketBoyutu + yerlestirilecekHareketliEngel.getEngelGenislik() - 1;
+                int x3 = engelX + yerlestirilecekHareketliEngel.hareketBoyutu + yerlestirilecekHareketliEngel.getEngelGenislik() - 1;
+                int x4 = engelX - yerlestirilecekHareketliEngel.hareketBoyutu;
+
+                int y1 = engelY ;
+                int y2 = engelY ;
+                int y3 = engelY + yerlestirilecekHareketliEngel.getEngelBoy() -1;
+                int y4 = engelY + yerlestirilecekHareketliEngel.getEngelBoy() -1;
+
+                kontrol = lokasyon.Kontrol(x1, x2, x3, x4, y1, y2, y3, y4); // 1 ise devam -1 ise başa dön
+            }else {
+
+                int x1 = engelX ;
+                int x2 = engelX  + yerlestirilecekHareketliEngel.getEngelGenislik() - 1;
+                int x3 = engelX  + yerlestirilecekHareketliEngel.getEngelGenislik() - 1;
+                int x4 = engelX ;
+
+                int y1 = engelY - yerlestirilecekHareketliEngel.hareketBoyutu;
+                int y2 = engelY - yerlestirilecekHareketliEngel.hareketBoyutu;
+                int y3 = engelY + yerlestirilecekHareketliEngel.hareketBoyutu + yerlestirilecekHareketliEngel.getEngelBoy() -1;
+                int y4 = engelY + yerlestirilecekHareketliEngel.hareketBoyutu + yerlestirilecekHareketliEngel.getEngelBoy() -1;
+
+                kontrol = lokasyon.Kontrol(x1, x2, x3, x4, y1, y2, y3, y4); // 1 ise devam -1 ise başa dön
+
+            }
+
+
+            if (kontrol == 1) {
+
+                yerlestirilecekHareketliEngel.setEngelX(engelX);
+                yerlestirilecekHareketliEngel.setEngelY(engelY);
+
+                lokasyon.HareketliEngelKordinatYaz(yerlestirilecekHareketliEngel.getEngelBoy(), yerlestirilecekHareketliEngel.getEngelGenislik()
+                        ,yerlestirilecekHareketliEngel.getEngelX() + 1, yerlestirilecekHareketliEngel.getEngelY() + 1,
+                        yerlestirilecekHareketliEngel.hareketBoyutu,yerlestirilecekHareketliEngel.hareketYonu);
+
+                hareketliEngelArrayList.add(yerlestirilecekHareketliEngel);
+
+                break;
+            }
+        }
+
         }
 
         for (HareketliEngel hareketliEngel : hareketliEngelArrayList) {

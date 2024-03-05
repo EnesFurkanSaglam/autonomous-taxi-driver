@@ -56,8 +56,6 @@ public class HareketsizEngelYaz extends HareketsizEngel {
                     engelY = (int) (Math.random() * KARE_YUKSEKLIK);  // indisi veriyor
                 }while (!(engelY < KARE_YUKSEKLIK - yerlestirilecekYazEngeli.getEngelBoy()));
 
-               // System.out.println(engelX);
-               // System.out.println(engelY);
 
                 int x1 = engelX ;
                 int x2 = engelX  + yerlestirilecekYazEngeli.getEngelGenislik() - 1;

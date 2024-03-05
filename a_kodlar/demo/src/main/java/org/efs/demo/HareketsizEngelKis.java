@@ -38,11 +38,9 @@ public class HareketsizEngelKis extends HareketsizEngel {
         int kontrol;
 
 
-
         for (int i = 0;i<10;i++){
 
             while (true) {
-
 
                 int kisEngelSayisi = kisEngelleri.length;
                 Random random = new Random();

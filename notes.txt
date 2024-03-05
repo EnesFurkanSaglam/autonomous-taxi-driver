@@ -5,8 +5,8 @@ sıkıntı ney:
 1-maindeki oluşturma metodlarını sınıflara taşı ++
 2-hareket işini hallet   hareket ettirme oolayında image tekrar çiziliyor eski image kaldırılmalı +++
 3-Resimlerin hareketinde sıkınt ıvar
-4-Resimlerin boyutlarında sıkıntı var 
-4-rastgele oluşan resimleri belli bir düzene koy (random olayı düzenlenecek)
+4-Resimlerin boyutlarında sıkıntı var ++
+4-rastgele oluşan resimleri belli bir düzene koy (random olayı düzenlenecek) ++
 5-sis gelcek kalkacak flnnn
 
 
