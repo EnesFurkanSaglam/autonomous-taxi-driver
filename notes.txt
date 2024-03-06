@@ -13,3 +13,37 @@ sıkıntı ney:
 not belki 
 --HarketsizEngelYaz ve HareketsizEngelKIş da Image sınıfını kullanıyorum
 muhtmelen ilerlerde harketliEngel Sınıfında olduğu gibi ImageWiew  sınıfını kullanabilirim
+
+
+eksiklerden bitenler
+
+**Karakter boyutu 1x1, sandık boyutu 2x2 olmalı.
+
+**Her harita oluşturulduğunda her sandık türünden en az 5 adet üretilmiş ve harita üzerinde uygun yerlere yerleştirilmiş olması beklenmektedir
+
+
+eksikler:
+
+
+son tarih: 18/03/2024 
+
+**Karakterin Hareketi: Karakter 3x3 bir alanı (3 birim sağ, 3 birim sol, 3 birim yukarı ve 3 birim aşağıyı) görebilir. Oyun boyunca karakterin hareketi otomatik olmalıdır. Program başlatıldığında karakter, tüm sandıkları toplamak için hesaplanan en kısa yol üzerinde ilerlemelidir. Karakter başlangıçta tüm haritayı bilmemelidir. Program sonlandığında karakterin öğrenmediği kareler sisli (kapalı) olarak gösterilmeli, öğrenilen kareler ise açılarak ilgili karelerde bulunan nesneye göre (engel, sandık, vs.) belirtilmelidir. Öğrenilen karelerin içeriği, öğrenilme sırasına göre yukarıdan aşağıya doğru olacak şekilde ekranın sağ üst köşesinde yazdırılmalıdır (Örneğin; “Ağaç keşfedildi!”, “Gümüş sandık keşfedildi!” gibi)
+
+**Karakter bulunduğu konumdan itibaren kare şeklindeki 7x7'lik alanı görebilir. Çapraz alanları görebilir ama çapraz hareket edemez.
+
+**Karakter bir sandığı topladığında ilgili sandık harita üzerinde kaybolmalıdır. Sandıkların toplanma sırasına göre (kendi aralarında öncelik sıralaması altın sandık, gümüş sandık, zümrüt sandık ve bakır sandık sıralanmalıdır) ekranın sağ üst köşesinde sandığın türüne göre bilgi verilmelidir (Örneğin; toplanan sandık altın sandık ise “Altın sandık toplandı! (8,16-8,18) konumunda bulundu” yazılmalıdır).
+
+**En Kısa Yol Algoritması ve Beklenen Çıktılar: Tüm bu bilgiler doğrultusunda, karakterin rastgele belirlenen başlangıç noktasından başlayarak tüm hazine sandıklarını en kısa sürede toplayabileceği en kısa yol hesaplanmalıdır. En kısa yolun hesaplanmasında geliştirilecek algoritmayı sizin tasarlamanız beklenmektedir. Tasarladığınız algoritma sonucunda elde edilen en kısa yol, ızgara üzerinde yeşil renkle gösterilmelidir. En kısa yola göre gidilmesi gereken adım sayısı (kaç kare üzerinden geçildiği) bilgisi ekranda yazdırılmalıdır
+
+**Haritada Başlangıç ve Bitiş Noktalarının Belirlenmesi: Karakterin başlangıç noktası harita üzerindeki uygun (engel ya da sandık içermeyen) karelerde rastgele olacak şekilde belirlenmelidir. Bitiş noktası, geliştirilen algoritmaya göre toplanan en son hazine sandığının konumu olmalıdır.
+
+**Uygulama Sınıfı:
+Uygulama içerisinde karakterin hedefe kaç adımda ulaştığı, hangi nesneleri elde ettiği gibi
+bilgilerin tutulması ve ekranda gösterilmesi sağlamalıdır.
+
+**en az 20 adet sabit (her sabit nesneden en az 2 adet oluşturulması zorunludur), 3 adet hareketli nesnenin üretilmiş ve harita üzerinde uygun yerlere yerleştirilmiş olması beklenmektedir. Harita üzerinde hareketli engellerin takip ettiği yol kırmızı renkle gösterilmelidir.
+
+
+Vakit kalırsa
+
+Arkaya yolla bir taksi yolla şarkısı
