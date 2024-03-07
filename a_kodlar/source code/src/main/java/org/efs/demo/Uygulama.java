@@ -12,7 +12,6 @@ bilgilerin tutulması ve ekranda gösterilmesi sağlamalıdır.
     // önce en yakın hazine belirlenmeli sonra başlangıç noktasından o hazineye ulaşılmalı aynı şekilde yine en yakın hazine belirlenmeli ve ona gitmeli
 
 
-
     //up
     //right
     //down

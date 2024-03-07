@@ -93,7 +93,6 @@ public class Lokasyon {
 
     }
 
-
     public void HareketsizEngelYazKordinatYaz(int boy,int genislik,int solUstKordinatX,int solUstKordinatY) {
 
         int x1 = solUstKordinatX - 1;
