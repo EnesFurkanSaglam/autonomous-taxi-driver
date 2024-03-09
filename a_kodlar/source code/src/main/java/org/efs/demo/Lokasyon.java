@@ -22,7 +22,7 @@ public class Lokasyon {
 
     private int X;
     private int Y;
-    private int [][] KORDINATLAR = new int[KARE_YUKSEKLIK][KARE_GENISLIK];
+    static int [][] KORDINATLAR = new int[KARE_YUKSEKLIK][KARE_GENISLIK];
 
 
     public void KarakterKordinatYaz(int boy,int genislik,int solUstKordinatX,int solUstKordinatY){
@@ -102,7 +102,7 @@ public class Lokasyon {
 
         for (int i = y1; i <= y2; i++) {
             for (int j = x1; j <= x2; j++) {
-                this.KORDINATLAR[i][j] = 4;
+                this.KORDINATLAR[i][j] = 3;
             }
         }
     }
@@ -116,7 +116,7 @@ public class Lokasyon {
 
         for (int i = y1; i <= y2; i++) {
             for (int j = x1; j <= x2; j++) {
-                this.KORDINATLAR[i][j] = 5;
+                this.KORDINATLAR[i][j] = 3;
             }
         }
 

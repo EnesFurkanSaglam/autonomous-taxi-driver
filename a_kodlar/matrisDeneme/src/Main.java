@@ -1,27 +1,54 @@
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class Main {
-    static int[][] KORDINATLAR = new int[15][15];
-
     public static void main(String[] args) {
-        for (int i = 0; i < 15; i++) {
-            for (int j = 0; j < 15; j++) {
-                KORDINATLAR[i][j] = 0;
-            }
-        }
+        int[][] matrix = {
+                {1, 0, 0, 0},
+                {1, 1, 0, 0},
+                {0, 1, 1, 0},
+                {0, 0, 1, 1}
+        };
 
-        KORDINATLAR[11][9] = 5;
+        int startX = 0;
+        int startY = 0;
 
-        int a = Kontrol(11, 13, 13, 11, 9, 9, 13, 13);
-        System.out.println(a);
+        bfs(matrix, startX, startY);
     }
 
-    public static int Kontrol(int x1, int x2, int x3, int x4, int y1, int y2, int y3, int y4) {
-        for (int i = x1; i <= x2; i++) {
-            for (int j = y1; j <= y4; j++) {
-                if (KORDINATLAR[i][j] != 0) {
-                    return -1;
+    public static void bfs(int[][] matrix, int startX, int startY) {
+        int rows = matrix.length;
+        int cols = matrix[0].length;
+        boolean[][] visited = new boolean[rows][cols];
+
+        Queue<Integer> queueX = new LinkedList<>();
+        Queue<Integer> queueY = new LinkedList<>();
+
+        queueX.add(startX);
+        queueY.add(startY);
+        visited[startX][startY] = true;
+
+        int[] dx = {-1, 1, 0, 0}; // Değişim vektörleri
+        int[] dy = {0, 0, -1, 1};
+
+        while (!queueX.isEmpty()) {
+            int x = queueX.poll();
+            int y = queueY.poll();
+
+            System.out.println("Visited: (" + x + ", " + y + ")");
+
+            // Matrisin dört yönlü komşularını kontrol et
+            for (int i = 0; i < 4; i++) {
+                int nx = x + dx[i];
+                int ny = y + dy[i];
+
+                // Geçerli ve ziyaret edilmemiş bir komşu ise, kuyruğa ekle
+                if (nx >= 0 && nx < rows && ny >= 0 && ny < cols && !visited[nx][ny] && matrix[nx][ny] != 0) {
+                    queueX.add(nx);
+                    queueY.add(ny);
+                    visited[nx][ny] = true;
                 }
             }
         }
-        return 1;
     }
 }

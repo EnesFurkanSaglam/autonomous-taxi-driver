@@ -40,12 +40,10 @@ NOT: Karakter çapraz gidemez. Sadece sağ, sol, yukarı ya da aşağı yönde h
     private String imagePath;
     private int boy;
     private int genislik;
-
     private int ilkKonumX;
     private int ilkKonumY;
 
     // ilerlediği konumu tutan bir değişken olmalı !!
-
 
 
     static Karakter karakter = new Karakter(1,"doblo.png","file:///C:/BEN/Kodlar/Proje/Proje_9_Uni_ProLab2_1/a_png/Karakter/",

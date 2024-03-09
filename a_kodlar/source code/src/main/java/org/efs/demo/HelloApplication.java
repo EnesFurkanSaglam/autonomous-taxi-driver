@@ -9,26 +9,22 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-
 import static org.efs.demo.HareketliEngel.hareketEttir;
 import static org.efs.demo.HareketliEngel.hareketliEngelOlustur;
 import static org.efs.demo.HareketsizEngelKis.KisEngelOlustur;
 import static org.efs.demo.HareketsizEngelYaz.YazEngelOlustur;
 import static org.efs.demo.Hazine.HazineOlustur;
 import static org.efs.demo.Karakter.KarakterOlustur;
+import static org.efs.demo.Uygulama.KarkaterHareketEttir;
+
 
 public class HelloApplication extends Application{
 
@@ -39,7 +35,6 @@ public class HelloApplication extends Application{
      static final int KARE_BOYUTU = GENISLIK / KARE_YUKSEKLIK;
     static GraphicsContext gc;
     static Clip clip1;
-
 
 
     public static void main(String[] args) {
@@ -85,14 +80,12 @@ public class HelloApplication extends Application{
         muzikCal1(a);
 
 
-
         buttonIlk.setOnAction(actionEventIlk ->{
 
-            muzikDurdur();
+            muzikDurdur1();
 
             File b = new File("C:\\BEN\\Kodlar\\Proje\\Proje_9_Uni_ProLab2_1\\a_vaw\\b.wav");
             muzikCal2(b);
-
 
             Group root = new Group();
             primaryStage.setTitle("OTONOM HAZİNE AVCISI");
@@ -110,10 +103,12 @@ public class HelloApplication extends Application{
             try {
                 HazineOlustur(lokasyon,root);
                 hareketliEngelOlustur(lokasyon,root);
-                //YazEngelOlustur(lokasyon,root);
-                //KisEngelOlustur(lokasyon,root);
-                //KarakterOlustur(lokasyon,root);
-                hareketEttir();
+                YazEngelOlustur(lokasyon,root);
+                KisEngelOlustur(lokasyon,root);
+                KarakterOlustur(lokasyon,root);
+
+                KarkaterHareketEttir();
+                //hareketEttir();
 
                 lokasyon.HaritaMatrisYazdir();
             } catch (CloneNotSupportedException e) {
@@ -183,7 +178,7 @@ public class HelloApplication extends Application{
         }
     }
 
-    public static void muzikDurdur(){
+    public static void muzikDurdur1(){
         clip1.stop();
     }
 
