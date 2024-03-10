@@ -8,16 +8,19 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import static org.efs.demo.HelloApplication.*;
+import static org.efs.demo.Karakter.karakter;
 
 public class Hazine  implements Cloneable {
 
-    public Hazine(String imagePath, String ad, int x, int y, int boy, int genislik) {
+    public Hazine(String imagePath, String ad, int x, int y, int boy, int genislik,double karaktereUzaklik) {
         this.setAd(ad);
         this.setImagePath(imagePath);
         setX(x);
         setY(y);
         setBoy(boy);
         setGenislik(genislik);
+        this.karaktereUzaklik = karaktereUzaklik;
+
     }
 
     private String ad;
@@ -26,16 +29,17 @@ public class Hazine  implements Cloneable {
     private int Y;
     private int Boy;
     private int Genislik;
+    private double karaktereUzaklik;
 
 
     static Hazine altin = new Hazine("file:///C:/BEN/Kodlar/Proje/Proje_9_Uni_ProLab2_1/a_png/hazine/",
-            "altin.png",0,0,2,2);
+            "altin.png",0,0,2,2,0);
     static Hazine bakir = new Hazine("file:///C:/BEN/Kodlar/Proje/Proje_9_Uni_ProLab2_1/a_png/hazine/",
-            "bakir.png",0,0,2,2);
+            "bakir.png",0,0,2,2,0);
     static Hazine gumus = new Hazine("file:///C:/BEN/Kodlar/Proje/Proje_9_Uni_ProLab2_1/a_png/hazine/",
-            "gumus.png",0,0,2,2);
+            "gumus.png",0,0,2,2,0);
     static Hazine zumrut = new Hazine("file:///C:/BEN/Kodlar/Proje/Proje_9_Uni_ProLab2_1/a_png/hazine/",
-            "zumrut.png",0,0,2,2);
+            "zumrut.png",0,0,2,2,0);
 
 
     static Hazine [] hazineler = {altin,bakir,gumus,zumrut};
@@ -43,14 +47,14 @@ public class Hazine  implements Cloneable {
     static ArrayList<Hazine> hazineArrayList = new ArrayList<>();
 
 
-    public static void HazineOlustur(Lokasyon lokasyon, Group root) throws CloneNotSupportedException{
 
+    public static void HazineOlustur(Lokasyon lokasyon, Group root) throws CloneNotSupportedException{
 
         lokasyon.MatrisiBirle();
 
         int kontrol;
 
-        for (int j = 0;j<5;j++){
+        for (int j = 0;j<2;j++){
             for (int i = 0; i<hazineler.length; i++){
 
                 while (true){
@@ -84,8 +88,6 @@ public class Hazine  implements Cloneable {
                     int y3 = engelY + yerlestirilecekHazine.getBoy() - 1;
                     int y4 = engelY + yerlestirilecekHazine.getBoy() - 1;
 
-
-
                     kontrol = lokasyon.Kontrol(x1, x2, x3, x4, y1, y2, y3, y4);  // 1 ise devam -1 ise başa dön
 
                     if (kontrol == 1) {
@@ -106,7 +108,6 @@ public class Hazine  implements Cloneable {
         }
 
 
-
         for (Hazine hazine : hazineArrayList){
 
             Image imageHazine = new Image(hazine.imagePath + hazine.ad);
@@ -122,6 +123,25 @@ public class Hazine  implements Cloneable {
         }
 
     }
+
+    public static Hazine enYakinHazineBul() {
+        double min = Double.MAX_VALUE;
+        Hazine enYakinHazine = null;
+
+        if (!hazineArrayList.isEmpty()) {
+            for (Hazine hazine : hazineArrayList) {
+                double uzaklik = Math.sqrt(Math.pow(karakter.getIlkKonumX() - hazine.getX(), 2) + Math.pow(karakter.getIlkKonumY() - hazine.getY(), 2));
+                if (uzaklik < min) {
+                    min = uzaklik;
+                    enYakinHazine = hazine;
+                }
+            }
+            hazineArrayList.remove(enYakinHazine);
+        }
+        return enYakinHazine;
+    }
+
+
 
 
     public String getAd() {
@@ -170,5 +190,13 @@ public class Hazine  implements Cloneable {
 
     public void setGenislik(int genislik) {
         Genislik = genislik;
+    }
+
+    public double getKaraktereUzaklik() {
+        return karaktereUzaklik;
+    }
+
+    public void setKaraktereUzaklik(double karaktereUzaklik) {
+        this.karaktereUzaklik = karaktereUzaklik;
     }
 }

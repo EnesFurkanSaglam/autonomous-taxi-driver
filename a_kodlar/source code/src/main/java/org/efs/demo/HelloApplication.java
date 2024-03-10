@@ -1,7 +1,7 @@
 package org.efs.demo;
 
 import javafx.application.Application;
-import javafx.geometry.Pos;
+import javafx.application.Platform;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -17,21 +17,29 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import java.io.File;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
+
 import static org.efs.demo.HareketliEngel.hareketEttir;
 import static org.efs.demo.HareketliEngel.hareketliEngelOlustur;
 import static org.efs.demo.HareketsizEngelKis.KisEngelOlustur;
 import static org.efs.demo.HareketsizEngelYaz.YazEngelOlustur;
 import static org.efs.demo.Hazine.HazineOlustur;
-import static org.efs.demo.Karakter.KarakterOlustur;
-import static org.efs.demo.Uygulama.KarkaterHareketEttir;
+import static org.efs.demo.Hazine.enYakinHazineBul;
+import static org.efs.demo.Karakter.*;
+import static org.efs.demo.Kordinat.kordinatArrayListKarakter;
+import static org.efs.demo.Lokasyon.KORDINATLAR;
+import static org.efs.demo.Uygulama.findShortestPath;
 
 
 public class HelloApplication extends Application{
 
      static final int GENISLIK = 1000;
      static final int YUKSEKLIK = 1000;
-     static final int KARE_YUKSEKLIK = 50;
-     static final int KARE_GENISLIK = 50;
+     static final int KARE_YUKSEKLIK = 20;
+     static final int KARE_GENISLIK = 20;
      static final int KARE_BOYUTU = GENISLIK / KARE_YUKSEKLIK;
     static GraphicsContext gc;
     static Clip clip1;
@@ -43,7 +51,6 @@ public class HelloApplication extends Application{
 
     @Override
     public void start(Stage primaryStage){
-
 
         Group group = new Group();
         primaryStage.setTitle("ANA EKRAN");
@@ -63,7 +70,6 @@ public class HelloApplication extends Application{
         textAlt.setX(600);
         textAlt.setY(720);
 
-
         group.getChildren().add(canvas0);
         Scene scene0 = new Scene(group);
         primaryStage.setScene(scene0);
@@ -75,10 +81,8 @@ public class HelloApplication extends Application{
         group.getChildren().add(textBaslangic);
         group.getChildren().add(textAlt);
 
-
         File a = new File("C:\\BEN\\Kodlar\\Proje\\Proje_9_Uni_ProLab2_1\\a_vaw\\a.wav");
         muzikCal1(a);
-
 
         buttonIlk.setOnAction(actionEventIlk ->{
 
@@ -100,17 +104,51 @@ public class HelloApplication extends Application{
 
             Lokasyon lokasyon = new Lokasyon();
 
+
             try {
                 HazineOlustur(lokasyon,root);
                 hareketliEngelOlustur(lokasyon,root);
                 YazEngelOlustur(lokasyon,root);
                 KisEngelOlustur(lokasyon,root);
                 KarakterOlustur(lokasyon,root);
+                lokasyon.HaritaMatrisYazdir();
 
-                KarkaterHareketEttir();
+
+                while (true){
+
+                    Hazine hazine = enYakinHazineBul();
+                    if (hazine ==null){
+                        System.out.println("Oyun bitti");
+                        break;
+                    }
+                    else {
+
+                        int[] start = {karakter.getIlkKonumY(), karakter.getIlkKonumX()};    // Karakterin başlangıç noktası ---  y-x die gircez
+                        int[] target = {hazine.getY(), hazine.getX()};   // Hedef nokta (0 noktası)    -----   y-x die gircez
+                        List<int[]> path = findShortestPath(KORDINATLAR, start, target);
+
+                        if (path.size() == 0) {
+                            System.out.println("Hedefe ulaşılamadı.");
+                        } else {
+                            System.out.println("En kısa yol:");
+                            for (int[] point : path) {
+                                System.out.println(Arrays.toString(point));
+                                Kordinat kordinat = new Kordinat(point[1],point[0]);
+                                kordinatArrayListKarakter.add(kordinat);
+                            }
+                        }
+
+                        int[] sonKonum = path.get(path.size() - 1);
+                        karakter.setIlkKonumX(sonKonum[1]);
+                        karakter.setIlkKonumY(sonKonum[0]);
+
+                    }
+
+                }
+
+                karakterHareket();
                 //hareketEttir();
 
-                lokasyon.HaritaMatrisYazdir();
             } catch (CloneNotSupportedException e) {
                 throw new RuntimeException(e);
             }

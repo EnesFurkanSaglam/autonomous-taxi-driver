@@ -34,7 +34,7 @@ public class Lokasyon {
 
         for (int i = y1; i <= y2; i++) {
             for (int j = x1; j <= x2; j++) {
-                KORDINATLAR[i][j] = 2;
+                KORDINATLAR[i][j] = 1;
             }
         }
 
@@ -49,7 +49,7 @@ public class Lokasyon {
 
         for (int i = y1; i <= y2; i++) {
             for (int j = x1; j <= x2; j++) {
-                this.KORDINATLAR[i][j] = 0 ;
+                KORDINATLAR[i][j] = 0;
             }
         }
 
@@ -67,10 +67,10 @@ public class Lokasyon {
 
                 for (int i = y1; i <= y2; i++) {
                     for (int j = x1; j <= x2; j++) {
-                        this.KORDINATLAR[i][j] = 3;
+                        KORDINATLAR[i][j] = 3;
                         for (int k = 1; k <= hareketBoyutu; k++) {
-                            this.KORDINATLAR[i][j - k] = 3;
-                            this.KORDINATLAR[i][j + k] = 3;
+                            KORDINATLAR[i][j - k] = 3;
+                            KORDINATLAR[i][j + k] = 3;
                         }
                     }
                 }
@@ -80,10 +80,10 @@ public class Lokasyon {
 
                 for (int i = y1; i <= y2; i++) {
                     for (int j = x1; j <= x2; j++) {
-                        this.KORDINATLAR[i][j] = 3;
+                        KORDINATLAR[i][j] = 3;
                         for (int k = 1; k <= hareketBoyutu; k++) {
-                            this.KORDINATLAR[i - k][j] = 3; // Üstteki hareketli engel
-                            this.KORDINATLAR[i + k][j] = 3; // Altındaki hareketli engel
+                            KORDINATLAR[i - k][j] = 3; // Üstteki hareketli engel
+                            KORDINATLAR[i + k][j] = 3; // Altındaki hareketli engel
                         }
                     }
                 }
@@ -102,7 +102,7 @@ public class Lokasyon {
 
         for (int i = y1; i <= y2; i++) {
             for (int j = x1; j <= x2; j++) {
-                this.KORDINATLAR[i][j] = 3;
+                KORDINATLAR[i][j] = 3;
             }
         }
     }
@@ -116,7 +116,7 @@ public class Lokasyon {
 
         for (int i = y1; i <= y2; i++) {
             for (int j = x1; j <= x2; j++) {
-                this.KORDINATLAR[i][j] = 3;
+                KORDINATLAR[i][j] = 3;
             }
         }
 
@@ -126,7 +126,7 @@ public class Lokasyon {
 
         for (int i = 0;i<KARE_YUKSEKLIK;i++){
             for (int j = 0;j<KARE_GENISLIK;j++){
-                System.out.print(this.KORDINATLAR[i][j]);
+                System.out.print(KORDINATLAR[i][j]);
             }
             System.out.println();
         }
@@ -136,14 +136,13 @@ public class Lokasyon {
 
         for (int i = x1; i <= x2; i++) {
             for (int j = y1; j <= y4; j++) {
-                if (this.KORDINATLAR[j][i] != 1) {
+                if (KORDINATLAR[j][i] != 1) {
                     return -1;
                 }
             }
         }
         return 1;
     }
-
 
     public void MatrisiBirle(){
         for (int i = 0;i<KARE_YUKSEKLIK;i++){

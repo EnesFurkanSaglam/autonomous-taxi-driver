@@ -30,7 +30,7 @@ public class HareketliEngel extends Engel {
 
     public static void hareketliEngelOlustur(Lokasyon lokasyon,Group root) throws CloneNotSupportedException {
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 1; i++) {
             int kontrol;
 
             while(true) {
