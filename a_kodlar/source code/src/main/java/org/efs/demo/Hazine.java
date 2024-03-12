@@ -54,7 +54,7 @@ public class Hazine  implements Cloneable {
 
         int kontrol;
 
-        for (int j = 0;j<2;j++){
+        for (int j = 0;j<hazineSayisi;j++){
             for (int i = 0; i<hazineler.length; i++){
 
                 while (true){

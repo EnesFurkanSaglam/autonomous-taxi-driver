@@ -57,6 +57,8 @@ NOT: Karakter çapraz gidemez. Sadece sağ, sol, yukarı ya da aşağı yönde h
 
     public static void KarakterOlustur(Lokasyon lokasyon, Group root){
 
+
+
         int kontrol;
 
         while (true){
@@ -102,7 +104,6 @@ NOT: Karakter çapraz gidemez. Sadece sağ, sol, yukarı ya da aşağı yönde h
             }
 
         }
-
         Image imageKarakter = new Image(karakter.imagePath + karakter.ad);
         imageViewKarakter = new ImageView(imageKarakter);
 
@@ -116,6 +117,7 @@ NOT: Karakter çapraz gidemez. Sadece sağ, sol, yukarı ya da aşağı yönde h
     }
 
     public static void karakterHareket() {
+
         AtomicInteger index = new AtomicInteger(0);
         Timer timer = new Timer();
         timer.scheduleAtFixedRate(new TimerTask() {
@@ -123,9 +125,12 @@ NOT: Karakter çapraz gidemez. Sadece sağ, sol, yukarı ya da aşağı yönde h
             public void run() {
                 Platform.runLater(() -> {
                     Kordinat kordinat = kordinatArrayListKarakter.get(index.get());
+
                     imageViewKarakter.setX(kordinat.x * KARE_BOYUTU);
                     imageViewKarakter.setY(kordinat.y * KARE_BOYUTU);
+
                     index.incrementAndGet();
+
                     if (index.get() >= kordinatArrayListKarakter.size()) {
                         timer.cancel();
                     }

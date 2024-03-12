@@ -30,7 +30,12 @@ public class HareketliEngel extends Engel {
 
     public static void hareketliEngelOlustur(Lokasyon lokasyon,Group root) throws CloneNotSupportedException {
 
-        for (int i = 0; i < 1; i++) {
+
+//          root.getChildren().removeAll(hareketliEngelImageViews);
+//          hareketliEngelImageViews.clear();
+//          hareketliEngelArrayList.clear();
+
+        for (int i = 0; i < hareketliEngelSayi; i++) {
             int kontrol;
 
             while(true) {
@@ -127,14 +132,12 @@ public class HareketliEngel extends Engel {
             @Override
             public void handle(long now) {
                 for (ImageView imageView : hareketliEngelImageViews) {
-
                     double x = imageView.getX();
                     double y = imageView.getY();
 
                     for (HareketliEngel hareketliEngel : hareketliEngelArrayList) {
                         if (imageView.getId().equals(hareketliEngel.getAd())) {
                             switch (hareketliEngel.hareketYonu) {
-
                                 case "Y":
                                     y += hareketliEngel.hareketBoyutu;
                                     if (y >= KARE_YUKSEKLIK * KARE_BOYUTU - hareketliEngel.hareketBoyutu || y < 0) {
@@ -148,11 +151,11 @@ public class HareketliEngel extends Engel {
                                     }
                                     break;
                             }
-
-                            imageView.setX(x);
-                            imageView.setY(y);
                         }
                     }
+
+                    imageView.setX(x);
+                    imageView.setY(y);
                 }
             }
         };

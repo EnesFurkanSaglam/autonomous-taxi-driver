@@ -38,7 +38,7 @@ public class HareketsizEngelKis extends HareketsizEngel {
         int kontrol;
 
 
-        for (int i = 0;i<5;i++){
+        for (int i = 0;i<engelKisSayisi;i++){
 
             while (true) {
 
