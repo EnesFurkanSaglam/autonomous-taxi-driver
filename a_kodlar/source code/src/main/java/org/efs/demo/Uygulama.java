@@ -36,7 +36,7 @@ public class Uygulama {
             for (int[] dir : directions) {
                 int x = current[0] + dir[0];
                 int y = current[1] + dir[1];
-                if (x >= 0 && x < grid.length && y >= 0 && y < grid[0].length && grid[x][y] != 3 && !parentMap.containsKey(Arrays.toString(new int[]{x, y}))) {
+                if (x >= 0 && x < grid.length && y >= 0 && y < grid[0].length && grid[x][y] != 3  && !parentMap.containsKey(Arrays.toString(new int[]{x, y}))) {
                     queue.offer(new int[]{x, y});
                     parentMap.put(Arrays.toString(new int[]{x, y}), Arrays.toString(current));
                 }

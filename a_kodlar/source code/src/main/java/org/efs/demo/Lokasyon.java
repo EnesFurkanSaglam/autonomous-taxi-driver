@@ -1,9 +1,11 @@
 package org.efs.demo;
+import javafx.scene.paint.Color;
+
 import java.util.ArrayList;
 
 import static org.efs.demo.HelloApplication.*;
 
-public class Lokasyon {
+public class Lokasyon implements Cloneable {
         // Kodinatlar sol üsten itibaren yazılıyor
 
     /*
@@ -63,7 +65,9 @@ public class Lokasyon {
 
         switch (hareketYonu) {
 
+
             case "X":
+
 
                 for (int i = y1; i <= y2; i++) {
                     for (int j = x1; j <= x2; j++) {
@@ -71,6 +75,8 @@ public class Lokasyon {
                         for (int k = 1; k <= hareketBoyutu; k++) {
                             KORDINATLAR[i][j - k] = 3;
                             KORDINATLAR[i][j + k] = 3;
+
+
                         }
                     }
                 }
@@ -78,12 +84,14 @@ public class Lokasyon {
                 break;
             case "Y":
 
+
                 for (int i = y1; i <= y2; i++) {
                     for (int j = x1; j <= x2; j++) {
                         KORDINATLAR[i][j] = 3;
                         for (int k = 1; k <= hareketBoyutu; k++) {
                             KORDINATLAR[i - k][j] = 3; // Üstteki hareketli engel
                             KORDINATLAR[i + k][j] = 3; // Altındaki hareketli engel
+
                         }
                     }
                 }
@@ -151,6 +159,10 @@ public class Lokasyon {
             }
         }
 
+    }
+
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 
 

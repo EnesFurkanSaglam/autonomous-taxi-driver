@@ -1,9 +1,12 @@
 package org.efs.demo;
 
 import javafx.animation.AnimationTimer;
+import javafx.animation.TranslateTransition;
 import javafx.scene.Group;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.paint.Color;
+import javafx.util.Duration;
 
 import java.util.*;
 
@@ -30,10 +33,10 @@ public class HareketliEngel extends Engel {
 
     public static void hareketliEngelOlustur(Lokasyon lokasyon,Group root) throws CloneNotSupportedException {
 
+        root.getChildren().removeAll(hareketliEngelImageViews);
+        hareketliEngelImageViews.clear();
+        hareketliEngelArrayList.clear();
 
-//          root.getChildren().removeAll(hareketliEngelImageViews);
-//          hareketliEngelImageViews.clear();
-//          hareketliEngelArrayList.clear();
 
         for (int i = 0; i < hareketliEngelSayi; i++) {
             int kontrol;
@@ -128,38 +131,56 @@ public class HareketliEngel extends Engel {
 
 
     public static void hareketEttir() {
-        AnimationTimer timer = new AnimationTimer() {
-            @Override
-            public void handle(long now) {
+
                 for (ImageView imageView : hareketliEngelImageViews) {
-                    double x = imageView.getX();
-                    double y = imageView.getY();
 
                     for (HareketliEngel hareketliEngel : hareketliEngelArrayList) {
                         if (imageView.getId().equals(hareketliEngel.getAd())) {
                             switch (hareketliEngel.hareketYonu) {
                                 case "Y":
-                                    y += hareketliEngel.hareketBoyutu;
-                                    if (y >= KARE_YUKSEKLIK * KARE_BOYUTU - hareketliEngel.hareketBoyutu || y < 0) {
-                                        hareketliEngel.hareketBoyutu *= -1; // Change direction
-                                    }
+
+
+                                    TranslateTransition yukariHareket = new TranslateTransition(Duration.seconds(1), imageView);
+                                    yukariHareket.setByY(hareketliEngel.hareketBoyutu); // Resmi HAREKET_UZAKLIGI kadar sağa hareket ettirin
+                                    yukariHareket.setAutoReverse(true); // Orijinal konuma geri dön
+                                    yukariHareket.setCycleCount(TranslateTransition.INDEFINITE); // Sürekli tekrarla
+
+                                    TranslateTransition asagiHareket = new TranslateTransition(Duration.seconds(1), imageView);
+                                    asagiHareket.setByY(-hareketliEngel.hareketBoyutu*2); // Resmi HAREKET_UZAKLIGI kadar sağa hareket ettirin
+                                    asagiHareket.setAutoReverse(true); // Orijinal konuma geri dön
+                                    asagiHareket.setCycleCount(TranslateTransition.INDEFINITE); // Sürekli tekrarla
+
+
+
+
+                                    yukariHareket.play();
+                                    asagiHareket.play();
+
+
                                     break;
+
                                 case "X":
-                                    x += hareketliEngel.hareketBoyutu;
-                                    if (x >= KARE_GENISLIK * KARE_BOYUTU - hareketliEngel.hareketBoyutu || x < 0) {
-                                        hareketliEngel.hareketBoyutu *= -1; // Change direction
-                                    }
+
+                                    TranslateTransition sagaHareket = new TranslateTransition(Duration.seconds(1), imageView);
+                                    sagaHareket.setByX(hareketliEngel.hareketBoyutu); // Resmi HAREKET_UZAKLIGI kadar sağa hareket ettirin
+                                    sagaHareket.setAutoReverse(true); // Orijinal konuma geri dön
+                                    sagaHareket.setCycleCount(TranslateTransition.INDEFINITE); // Sürekli tekrarla
+
+                                    TranslateTransition solaHareket = new TranslateTransition(Duration.seconds(1), imageView);
+                                    solaHareket.setByX(-hareketliEngel.hareketBoyutu*2); // Resmi HAREKET_UZAKLIGI kadar sola hareket ettirin
+                                    solaHareket.setAutoReverse(true); // Orijinal konuma geri dön
+                                    solaHareket.setCycleCount(TranslateTransition.INDEFINITE); // Sürekli tekrarla
+
+                                    sagaHareket.play();
+                                    solaHareket.play();
+
                                     break;
                             }
                         }
                     }
 
-                    imageView.setX(x);
-                    imageView.setY(y);
                 }
-            }
-        };
-        timer.start();
+
     }
 
 

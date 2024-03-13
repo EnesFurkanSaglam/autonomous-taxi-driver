@@ -49,8 +49,26 @@ son tarih: 18/03/2024
 
 eksikler::::::
 
-sis
-engelerin kaybolması
-yeşil renk
-kırmızı renk
-bilgiler 
+--arayüz 
+
+*harita oluştur
+*başlat
+*harita boyutu iste
+*engel sayısı iste
+*kaçar tane hazine olacak iste
+*adım sayısı yazılacak
+
+--yeşil ve kırmızı renk
+--sis
+--bilgi altın sandık bulundu vb öncelik sırası olacak altın-gümüş ....
+--bilgi ağaç keşfedildi (bu olay zor en sona bırak)
+
+
+kırmızı
+hareketli engellerin hareketi
+sisle beraber gelen bilgi
+son ekranda toplam bilgi
+
+
+
+

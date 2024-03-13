@@ -5,6 +5,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import static org.efs.demo.HelloApplication.*;
@@ -29,10 +30,15 @@ public class HareketsizEngelYaz extends HareketsizEngel {
 
     static Engel[] yazEngelleri = {agac,dag,duvar,kaya,gunes};
     static ArrayList<HareketsizEngelYaz> hareketsizEngelYazArrayList = new ArrayList<>();
+    static List<ImageView> hareketsizEngelYazImageViews  = new ArrayList<>();
 
 
 
     public static void YazEngelOlustur(Lokasyon lokasyon, Group root) throws CloneNotSupportedException {
+
+        root.getChildren().removeAll(hareketsizEngelYazImageViews);
+        hareketsizEngelYazImageViews.clear();
+        hareketsizEngelYazArrayList.clear();
 
         int kontrol;
 
@@ -96,7 +102,7 @@ public class HareketsizEngelYaz extends HareketsizEngel {
             imageView.setX(hareketsizEngelYaz.getEngelX() * KARE_BOYUTU);
             imageView.setY(hareketsizEngelYaz.getEngelY() * KARE_BOYUTU);
 
-            //ilerde arraylist<ImageView> oluşuturulabilir
+            hareketsizEngelYazImageViews.add(imageView);
             root.getChildren().add(imageView);
 
         }

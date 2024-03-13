@@ -5,6 +5,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import static org.efs.demo.HelloApplication.*;
@@ -43,12 +44,20 @@ public class Hazine  implements Cloneable {
 
 
     static Hazine [] hazineler = {altin,bakir,gumus,zumrut};
-
     static ArrayList<Hazine> hazineArrayList = new ArrayList<>();
+    static ArrayList<Hazine> hazineArrayListYedek = new ArrayList<>();
+    static List<ImageView> hazineImageViews  = new ArrayList<>();
+
 
 
 
     public static void HazineOlustur(Lokasyon lokasyon, Group root) throws CloneNotSupportedException{
+
+        root.getChildren().removeAll(hazineImageViews);
+        hazineArrayList.clear();
+        hazineArrayListYedek.clear();
+        hazineImageViews.clear();
+
 
         lokasyon.MatrisiBirle();
 
@@ -99,6 +108,7 @@ public class Hazine  implements Cloneable {
                                 ,yerlestirilecekHazine.getX() + 1, yerlestirilecekHazine.getY() + 1);
 
                         hazineArrayList.add(yerlestirilecekHazine);
+                        hazineArrayListYedek.add(yerlestirilecekHazine);
 
                         break;
                     }
@@ -112,6 +122,7 @@ public class Hazine  implements Cloneable {
 
             Image imageHazine = new Image(hazine.imagePath + hazine.ad);
             ImageView imageView = new ImageView(imageHazine);
+            imageView.setId(hazine.getAd());
 
             imageView.setFitWidth(KARE_BOYUTU * hazine.Genislik);
             imageView.setFitHeight(KARE_BOYUTU * hazine.Boy);
@@ -119,6 +130,7 @@ public class Hazine  implements Cloneable {
             imageView.setY(hazine.getY() * KARE_BOYUTU);
 
             //ilerde arraylist<ImageView> oluşuturulabilir
+            hazineImageViews.add(imageView);
             root.getChildren().add(imageView);
         }
 
@@ -137,6 +149,7 @@ public class Hazine  implements Cloneable {
                 }
             }
             hazineArrayList.remove(enYakinHazine);
+
         }
         return enYakinHazine;
     }

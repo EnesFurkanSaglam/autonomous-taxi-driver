@@ -4,12 +4,13 @@ import javafx.application.Platform;
 import javafx.scene.Group;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.paint.Color;
 
-import java.util.Random;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import static org.efs.demo.Hazine.hazineArrayListYedek;
+import static org.efs.demo.Hazine.hazineImageViews;
 import static org.efs.demo.HelloApplication.*;
 import static org.efs.demo.HelloApplication.KARE_YUKSEKLIK;
 import static org.efs.demo.Kordinat.kordinatArrayListKarakter;
@@ -47,63 +48,74 @@ NOT: Karakter çapraz gidemez. Sadece sağ, sol, yukarı ya da aşağı yönde h
     private int genislik;
     private int ilkKonumX;
     private int ilkKonumY;
-    static  ImageView imageViewKarakter;
+    static ImageView imageViewKarakter;
 
-
-    // ilerlediği konumu tutan bir değişken olmalı !!
 
     static Karakter karakter = new Karakter(1,"doblo.png","file:///C:/BEN/Kodlar/Proje/Proje_9_Uni_ProLab2_1/a_png/Karakter/",
             0,0,1,1);
 
+
+
+
     public static void KarakterOlustur(Lokasyon lokasyon, Group root){
 
+        imageViewKarakter =null;
 
 
         int kontrol;
 
-        while (true){
 
-            Random random = new Random();
 
-            int engelX;
-            int engelY;
+            while (true){
 
-            do {
+                Random random = new Random();
 
-                engelX = random.nextInt(KARE_GENISLIK);
 
-            } while (!(engelX + karakter.getGenislik() < KARE_GENISLIK));
 
-            do {
+                int engelX;
+                int engelY;
 
-                engelY = random.nextInt(KARE_YUKSEKLIK);
+                do {
 
-            } while (!(engelY + karakter.getBoy() < KARE_YUKSEKLIK));
+                    engelX = random.nextInt(KARE_GENISLIK);
 
-            int x1 = engelX;
-            int x2 = engelX + karakter.getGenislik() - 1;
-            int x3 = engelX + karakter.getGenislik() - 1;
-            int x4 = engelX;
+                } while (!(engelX + karakter.getGenislik() < KARE_GENISLIK));
 
-            int y1 = engelY;
-            int y2 = engelY;
-            int y3 = engelY + karakter.getBoy() - 1;
-            int y4 = engelY + karakter.getBoy() - 1;
+                do {
 
-            kontrol = lokasyon.Kontrol(x1, x2, x3, x4, y1, y2, y3, y4); // 1 ise devam -1 ise başa dön
+                    engelY = random.nextInt(KARE_YUKSEKLIK);
 
-            if (kontrol == 1) {
+                } while (!(engelY + karakter.getBoy() < KARE_YUKSEKLIK));
 
-                karakter.setIlkKonumX(engelX);
-                karakter.setIlkKonumY(engelY);
+                int x1 = engelX;
+                int x2 = engelX + karakter.getGenislik() - 1;
+                int x3 = engelX + karakter.getGenislik() - 1;
+                int x4 = engelX;
 
-                lokasyon.KarakterKordinatYaz(karakter.getBoy(), karakter.getGenislik()
-                        ,karakter.getIlkKonumX() + 1, karakter.getIlkKonumY() + 1);
+                int y1 = engelY;
+                int y2 = engelY;
+                int y3 = engelY + karakter.getBoy() - 1;
+                int y4 = engelY + karakter.getBoy() - 1;
 
-                break;
+                kontrol = lokasyon.Kontrol(x1, x2, x3, x4, y1, y2, y3, y4); // 1 ise devam -1 ise başa dön
+
+                if (kontrol == 1) {
+
+                    karakter.setIlkKonumX(engelX);
+                    karakter.setIlkKonumY(engelY);
+
+                    lokasyon.KarakterKordinatYaz(karakter.getBoy(), karakter.getGenislik()
+                            ,karakter.getIlkKonumX() + 1, karakter.getIlkKonumY() + 1);
+
+
+
+                    break;
+                }
+
             }
 
-        }
+
+
         Image imageKarakter = new Image(karakter.imagePath + karakter.ad);
         imageViewKarakter = new ImageView(imageKarakter);
 
@@ -112,7 +124,7 @@ NOT: Karakter çapraz gidemez. Sadece sağ, sol, yukarı ya da aşağı yönde h
         imageViewKarakter.setX(karakter.getIlkKonumX() * KARE_BOYUTU);
         imageViewKarakter.setY(karakter.getIlkKonumY() * KARE_BOYUTU);
 
-        //ilerde arraylist<ImageView> oluşuturulabilir
+
         root.getChildren().add(imageViewKarakter);
     }
 
@@ -129,6 +141,26 @@ NOT: Karakter çapraz gidemez. Sadece sağ, sol, yukarı ya da aşağı yönde h
                     imageViewKarakter.setX(kordinat.x * KARE_BOYUTU);
                     imageViewKarakter.setY(kordinat.y * KARE_BOYUTU);
 
+                    for (Hazine hazine : hazineArrayListYedek){
+                        if (hazine.getX() ==kordinat.x && hazine.getY() == kordinat.y){
+                            int noktaIndex = hazine.getAd().indexOf('.');
+                            String ad = hazine.getAd().substring(0, noktaIndex);
+                            textBilgi.setText(ad + " ALINDI");
+
+
+
+
+                            for (ImageView imageView : hazineImageViews){
+                                if (imageView.getId().equals(hazine.getAd()) && imageView.getX() == (double)hazine.getX() * KARE_BOYUTU){
+                                    imageView.setVisible(false);
+                                }
+                            }
+                        }
+
+                    }
+
+                    gc.setFill(Color.web("#008000"));
+                    gc.fillRect(kordinat.x * KARE_BOYUTU, kordinat.y* KARE_BOYUTU, KARE_BOYUTU, KARE_BOYUTU);
                     index.incrementAndGet();
 
                     if (index.get() >= kordinatArrayListKarakter.size()) {
@@ -137,8 +169,9 @@ NOT: Karakter çapraz gidemez. Sadece sağ, sol, yukarı ya da aşağı yönde h
                 });
             }
         }, 0, 100); // 100 milisaniye (0.1 saniye) aralıklarla hareket et
-    }
 
+
+    }
 
 
     public int getID() {
@@ -196,7 +229,6 @@ NOT: Karakter çapraz gidemez. Sadece sağ, sol, yukarı ya da aşağı yönde h
     public void setIlkKonumY(int ilkKonumY) {
         this.ilkKonumY = ilkKonumY;
     }
-
 
 
 
