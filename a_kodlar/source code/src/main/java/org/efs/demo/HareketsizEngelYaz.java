@@ -14,7 +14,6 @@ public class HareketsizEngelYaz extends HareketsizEngel {
 
     public HareketsizEngelYaz(String imagePath, String ad, int engelX, int engelY, int engelBoy, int engelGenislik) {
         super(imagePath, ad, engelX, engelY, engelBoy, engelGenislik);
-
     }
 
     static Engel agac = new HareketsizEngelYaz("file:///C:/BEN/Kodlar/Proje/Proje_9_Uni_ProLab2_1/a_png/Yaz Engelleri/",
@@ -31,8 +30,6 @@ public class HareketsizEngelYaz extends HareketsizEngel {
     static Engel[] yazEngelleri = {agac,dag,duvar,kaya,gunes};
     static ArrayList<HareketsizEngelYaz> hareketsizEngelYazArrayList = new ArrayList<>();
     static List<ImageView> hareketsizEngelYazImageViews  = new ArrayList<>();
-
-
 
     public static void YazEngelOlustur(Lokasyon lokasyon, Group root) throws CloneNotSupportedException {
 
@@ -61,7 +58,6 @@ public class HareketsizEngelYaz extends HareketsizEngel {
                 do{
                     engelY = (int) (Math.random() * KARE_YUKSEKLIK);  // indisi veriyor
                 }while (!(engelY < KARE_YUKSEKLIK - yerlestirilecekYazEngeli.getEngelBoy()));
-
 
                 int x1 = engelX ;
                 int x2 = engelX  + yerlestirilecekYazEngeli.getEngelGenislik() - 1;
@@ -106,9 +102,5 @@ public class HareketsizEngelYaz extends HareketsizEngel {
             root.getChildren().add(imageView);
 
         }
-
-
     }
-
-
 }

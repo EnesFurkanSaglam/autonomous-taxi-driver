@@ -31,8 +31,6 @@ public class Hazine  implements Cloneable {
     private int Boy;
     private int Genislik;
     private double karaktereUzaklik;
-
-
     static Hazine altin = new Hazine("file:///C:/BEN/Kodlar/Proje/Proje_9_Uni_ProLab2_1/a_png/hazine/",
             "altin.png",0,0,2,2,0);
     static Hazine bakir = new Hazine("file:///C:/BEN/Kodlar/Proje/Proje_9_Uni_ProLab2_1/a_png/hazine/",
@@ -47,8 +45,7 @@ public class Hazine  implements Cloneable {
     static ArrayList<Hazine> hazineArrayList = new ArrayList<>();
     static ArrayList<Hazine> hazineArrayListYedek = new ArrayList<>();
     static List<ImageView> hazineImageViews  = new ArrayList<>();
-
-
+    static ArrayList<Hazine> hazineArrayListToplamaSirasi = new ArrayList<>();
 
 
     public static void HazineOlustur(Lokasyon lokasyon, Group root) throws CloneNotSupportedException{
@@ -57,8 +54,6 @@ public class Hazine  implements Cloneable {
         hazineArrayList.clear();
         hazineArrayListYedek.clear();
         hazineImageViews.clear();
-
-
         lokasyon.MatrisiBirle();
 
         int kontrol;
@@ -129,11 +124,10 @@ public class Hazine  implements Cloneable {
             imageView.setX(hazine.getX() * KARE_BOYUTU);
             imageView.setY(hazine.getY() * KARE_BOYUTU);
 
-            //ilerde arraylist<ImageView> oluşuturulabilir
+
             hazineImageViews.add(imageView);
             root.getChildren().add(imageView);
         }
-
     }
 
     public static Hazine enYakinHazineBul() {
@@ -149,12 +143,9 @@ public class Hazine  implements Cloneable {
                 }
             }
             hazineArrayList.remove(enYakinHazine);
-
         }
         return enYakinHazine;
     }
-
-
 
 
     public String getAd() {
@@ -205,11 +196,4 @@ public class Hazine  implements Cloneable {
         Genislik = genislik;
     }
 
-    public double getKaraktereUzaklik() {
-        return karaktereUzaklik;
-    }
-
-    public void setKaraktereUzaklik(double karaktereUzaklik) {
-        this.karaktereUzaklik = karaktereUzaklik;
-    }
 }

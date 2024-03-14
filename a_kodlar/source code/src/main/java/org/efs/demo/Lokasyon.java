@@ -1,31 +1,11 @@
 package org.efs.demo;
-import javafx.scene.paint.Color;
-
-import java.util.ArrayList;
-
 import static org.efs.demo.HelloApplication.*;
 
 public class Lokasyon implements Cloneable {
-        // Kodinatlar sol üsten itibaren yazılıyor
-
-    /*
-
-    LOKASYON İÇİN NOT:
-    0-Hazine
-    1-Boş Yerler
-    2-Karakter
-    3-Harketli Engel
-    4-HareketsizEngelYaz
-    5-HareketsizEngelKis
-
-    6-Çıkış
-
-     */
 
     private int X;
     private int Y;
     static int [][] KORDINATLAR = new int[KARE_YUKSEKLIK][KARE_GENISLIK];
-
 
     public void KarakterKordinatYaz(int boy,int genislik,int solUstKordinatX,int solUstKordinatY){
 
@@ -39,7 +19,6 @@ public class Lokasyon implements Cloneable {
                 KORDINATLAR[i][j] = 1;
             }
         }
-
     }
 
     public void HazineKordinatYaz(int boy,int genislik,int solUstKordinatX,int solUstKordinatY){
@@ -54,7 +33,6 @@ public class Lokasyon implements Cloneable {
                 KORDINATLAR[i][j] = 0;
             }
         }
-
     }
     public void HareketliEngelKordinatYaz(int boy, int genislik, int solUstKordinatX, int solUstKordinatY, int hareketBoyutu, String hareketYonu) {
 
@@ -65,9 +43,7 @@ public class Lokasyon implements Cloneable {
 
         switch (hareketYonu) {
 
-
             case "X":
-
 
                 for (int i = y1; i <= y2; i++) {
                     for (int j = x1; j <= x2; j++) {
@@ -95,10 +71,8 @@ public class Lokasyon implements Cloneable {
                         }
                     }
                 }
-
                 break;
         }
-
     }
 
     public void HareketsizEngelYazKordinatYaz(int boy,int genislik,int solUstKordinatX,int solUstKordinatY) {
@@ -127,8 +101,6 @@ public class Lokasyon implements Cloneable {
                 KORDINATLAR[i][j] = 3;
             }
         }
-
-
     }
     public void HaritaMatrisYazdir(){
 
@@ -164,7 +136,4 @@ public class Lokasyon implements Cloneable {
     public Object clone() throws CloneNotSupportedException {
         return super.clone();
     }
-
-
-
 }

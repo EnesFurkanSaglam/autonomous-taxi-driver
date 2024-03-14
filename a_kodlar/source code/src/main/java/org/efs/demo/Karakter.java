@@ -1,35 +1,17 @@
 package org.efs.demo;
-
 import javafx.application.Platform;
 import javafx.scene.Group;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
-
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
-
-import static org.efs.demo.Hazine.hazineArrayListYedek;
-import static org.efs.demo.Hazine.hazineImageViews;
+import static org.efs.demo.Hazine.*;
 import static org.efs.demo.HelloApplication.*;
 import static org.efs.demo.HelloApplication.KARE_YUKSEKLIK;
 import static org.efs.demo.Kordinat.kordinatArrayListKarakter;
 
 public class Karakter {
-
-
-    // sıkıntı varvvvvvvvvvvvv
-
-/*
-    Bu sınıfta bulunması gereken özellikler ve fonksiyonlar:
-
-ID, Ad bilgileri tutulmalıdır.
-Karakterlerin ilerlediği koordinatları tutacak Lokasyon değişkenleri olmalıdır.
-Constructor, Get, Set ve En KısaYol metotları yer almalıdır.
-
-NOT: Karakter çapraz gidemez. Sadece sağ, sol, yukarı ya da aşağı yönde hareket sağlayabilir.
-
- */
 
     public Karakter(int ID, String ad, String imagePath, int ilkKonumX, int ilkKonumY,int genislik,int boy) {
         this.setID(ID);
@@ -50,27 +32,19 @@ NOT: Karakter çapraz gidemez. Sadece sağ, sol, yukarı ya da aşağı yönde h
     private int ilkKonumY;
     static ImageView imageViewKarakter;
 
-
     static Karakter karakter = new Karakter(1,"doblo.png","file:///C:/BEN/Kodlar/Proje/Proje_9_Uni_ProLab2_1/a_png/Karakter/",
             0,0,1,1);
-
-
-
 
     public static void KarakterOlustur(Lokasyon lokasyon, Group root){
 
         imageViewKarakter =null;
-
+        hazineArrayListToplamaSirasi.clear();
 
         int kontrol;
-
-
 
             while (true){
 
                 Random random = new Random();
-
-
 
                 int engelX;
                 int engelY;
@@ -107,24 +81,16 @@ NOT: Karakter çapraz gidemez. Sadece sağ, sol, yukarı ya da aşağı yönde h
                     lokasyon.KarakterKordinatYaz(karakter.getBoy(), karakter.getGenislik()
                             ,karakter.getIlkKonumX() + 1, karakter.getIlkKonumY() + 1);
 
-
-
                     break;
                 }
-
             }
-
-
 
         Image imageKarakter = new Image(karakter.imagePath + karakter.ad);
         imageViewKarakter = new ImageView(imageKarakter);
-
         imageViewKarakter.setFitWidth(KARE_BOYUTU * karakter.genislik);
         imageViewKarakter.setFitHeight(KARE_BOYUTU * karakter.boy);
         imageViewKarakter.setX(karakter.getIlkKonumX() * KARE_BOYUTU);
         imageViewKarakter.setY(karakter.getIlkKonumY() * KARE_BOYUTU);
-
-
         root.getChildren().add(imageViewKarakter);
     }
 
@@ -145,10 +111,11 @@ NOT: Karakter çapraz gidemez. Sadece sağ, sol, yukarı ya da aşağı yönde h
                         if (hazine.getX() ==kordinat.x && hazine.getY() == kordinat.y){
                             int noktaIndex = hazine.getAd().indexOf('.');
                             String ad = hazine.getAd().substring(0, noktaIndex);
+                            ad = ad.toUpperCase();
+                            if (!hazineArrayListToplamaSirasi.contains(hazine)){
+                                hazineArrayListToplamaSirasi.add(hazine);
+                            }
                             textBilgi.setText(ad + " ALINDI");
-
-
-
 
                             for (ImageView imageView : hazineImageViews){
                                 if (imageView.getId().equals(hazine.getAd()) && imageView.getX() == (double)hazine.getX() * KARE_BOYUTU){
@@ -156,7 +123,6 @@ NOT: Karakter çapraz gidemez. Sadece sağ, sol, yukarı ya da aşağı yönde h
                                 }
                             }
                         }
-
                     }
 
                     gc.setFill(Color.web("#008000"));
@@ -169,67 +135,33 @@ NOT: Karakter çapraz gidemez. Sadece sağ, sol, yukarı ya da aşağı yönde h
                 });
             }
         }, 0, 100); // 100 milisaniye (0.1 saniye) aralıklarla hareket et
-
-
-    }
-
-
-    public int getID() {
-        return ID;
     }
 
     public void setID(int ID) {
         this.ID = ID;
     }
-
-    public String getAd() {
-        return ad;
-    }
-
     public void setAd(String ad) {
         this.ad = ad;
     }
-
-    public String getImagePath() {
-        return imagePath;
-    }
-
     public void setImagePath(String imagePath) {
         this.imagePath = imagePath;
     }
-
     public int getBoy() {
         return boy;
     }
-
-    public void setBoy(int boy) {
-        this.boy = boy;
-    }
-
     public int getGenislik() {
         return genislik;
     }
-
-    public void setGenislik(int genislik) {
-        this.genislik = genislik;
-    }
-
     public int getIlkKonumX() {
         return ilkKonumX;
     }
-
     public void setIlkKonumX(int ilkKonumX) {
         this.ilkKonumX = ilkKonumX;
     }
-
     public int getIlkKonumY() {
         return ilkKonumY;
     }
-
     public void setIlkKonumY(int ilkKonumY) {
         this.ilkKonumY = ilkKonumY;
     }
-
-
-
 }

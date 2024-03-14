@@ -1,27 +1,13 @@
 package org.efs.demo;
 
 import java.util.*;
-
-import static org.efs.demo.Hazine.hazineArrayList;
-import static org.efs.demo.HelloApplication.*;
-import static org.efs.demo.Karakter.karakter;
-import static org.efs.demo.Lokasyon.KORDINATLAR;
-
 import java.util.LinkedList;
 import java.util.Queue;
 
-
 public class Uygulama {
-    /*
-    **Uygulama Sınıfı:
-    Uygulama içerisinde karakterin hedefe kaç adımda ulaştığı, hangi nesneleri elde ettiği gibi
-    bilgilerin tutulması ve ekranda gösterilmesi sağlamalıdır.
-
- */
 
     private static final int[][] directions = {{-1, 0}, {0, -1}, {1, 0}, {0, 1}};
-
-
+    
      static List<int[]> findShortestPath(int[][] grid, int[] start, int[] target) {
         Queue<int[]> queue = new LinkedList<>();
         Map<String, String> parentMap = new HashMap<>();
@@ -42,7 +28,6 @@ public class Uygulama {
                 }
             }
         }
-
         return new ArrayList<>();
     }
 
@@ -58,8 +43,6 @@ public class Uygulama {
         path.add(0, start);
         return path;
     }
-
-
 }
 
 

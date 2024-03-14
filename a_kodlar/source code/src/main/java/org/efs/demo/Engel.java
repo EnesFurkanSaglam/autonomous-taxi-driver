@@ -18,7 +18,6 @@ public class Engel implements Cloneable {
         this.setImagePath(imagePath);
     }
 
-
     public int getEngelX() {
         return engelX;
     }
@@ -34,7 +33,6 @@ public class Engel implements Cloneable {
     public void setEngelY(int engelY) {
         this.engelY = engelY;
     }
-
 
     protected Engel clone() throws CloneNotSupportedException {
         try {

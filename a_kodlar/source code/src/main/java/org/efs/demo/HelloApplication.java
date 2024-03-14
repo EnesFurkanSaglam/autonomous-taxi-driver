@@ -1,7 +1,6 @@
 package org.efs.demo;
 
 import javafx.application.Application;
-
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -12,23 +11,19 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-
-import java.util.Arrays;
-import java.util.List;
-
+import java.util.*;
 import static org.efs.demo.HareketliEngel.hareketEttir;
 import static org.efs.demo.HareketliEngel.hareketliEngelOlustur;
 import static org.efs.demo.HareketsizEngelKis.KisEngelOlustur;
 import static org.efs.demo.HareketsizEngelYaz.YazEngelOlustur;
-import static org.efs.demo.Hazine.HazineOlustur;
-import static org.efs.demo.Hazine.enYakinHazineBul;
+import static org.efs.demo.Hazine.*;
 import static org.efs.demo.Karakter.*;
 import static org.efs.demo.Kordinat.kordinatArrayListKarakter;
 import static org.efs.demo.Lokasyon.KORDINATLAR;
 import static org.efs.demo.Uygulama.findShortestPath;
-
 
 public class HelloApplication extends Application {
 
@@ -43,8 +38,6 @@ public class HelloApplication extends Application {
     Button button3 = new Button("Oyunu Bitir");
     Button button4Baslat = new Button("Oyunu Başlat");
     Button button5Sifirla = new Button("Haritayı Sıfırla");
-
-
     TextField textFieldEngelYaz = new TextField();
     TextField textFieldEngelKis = new TextField();
     TextField textFieldEngelHareketli = new TextField();
@@ -54,7 +47,7 @@ public class HelloApplication extends Application {
     static int engelKisSayisi;
     static int hareketliEngelSayi;
     static int hazineSayisi;
-    static Text textBilgi = new Text("Bilgi");
+    static Text textBilgi = new Text("BİLGİ");
 
 
     public static void main(String[] args) {
@@ -85,20 +78,21 @@ public class HelloApplication extends Application {
                 sayfa3(group3, primaryStage);
 
                 button4Baslat.setOnAction(actionEvent1 -> {
+
                     karakterHareket();
                     hareketEttir();
-
 
                 });
                 button5Sifirla.setOnAction(actionEvent1 -> {
 
+                    hazineArrayListToplamaSirasi.clear();
+
                     group3.getChildren().clear();
                     sayfa3(group3, primaryStage);
-
                 });
                 button3.setOnAction(actionEvent1 -> {
-
-
+                    Group group4 = new Group();
+                    sayfa4(group4,primaryStage);
 
                 });
             });
@@ -110,7 +104,6 @@ public class HelloApplication extends Application {
     }
 
     private void drawBackground(GraphicsContext gc) {
-
         for (int i = 0; i < KARE_YUKSEKLIK; i++) {
             for (int j = 0; j < KARE_GENISLIK; j++) {
                 if ((i + j) % 2 == 0) {
@@ -122,7 +115,6 @@ public class HelloApplication extends Application {
             }
         }
     }
-
 
     private void sayfa1(Group group, Stage primaryStage) {
 
@@ -224,18 +216,15 @@ public class HelloApplication extends Application {
         textFieldEngelHareketli.setLayoutY(682);
         group.getChildren().add(textFieldEngelHareketli);
 
-
         Text textHazine = new Text("Kaçar Tane Hazine (4 çeşit) : ");
         textHazine.setFont(Font.font("Arial", 24));
         textHazine.setX(50);
         textHazine.setY(750);
         group.getChildren().add(textHazine);
 
-
         textFieldHazine.setLayoutX(370);
         textFieldHazine.setLayoutY(732);
         group.getChildren().add(textFieldHazine);
-
 
         Text textHaritaXY = new Text("Harita Boyutu (AxA) A :");
         textHaritaXY.setFont(Font.font("Arial", 24));
@@ -253,8 +242,6 @@ public class HelloApplication extends Application {
         primaryStage.setTitle("OTONOM HAZİNE AVCISI");
         Canvas canvas = new Canvas(GENISLIK, YUKSEKLIK);
         root.getChildren().add(canvas);
-
-        // Yeni bir Group oluşturarak sahne oluşturuluyor
 
         Scene scene3 = new Scene(new Group(root), GENISLIK, YUKSEKLIK);
         primaryStage.setScene(scene3);
@@ -275,10 +262,11 @@ public class HelloApplication extends Application {
         button5Sifirla.setLayoutY(20);
         root.getChildren().add(button5Sifirla);
 
-
-        textBilgi.setFont(Font.font("Arial", 16));
+        textBilgi.setFont(Font.font("Arial", FontWeight.BOLD, 20));
         textBilgi.setX(800);
         textBilgi.setY(50);
+        textBilgi.setFill(Color.RED);
+
         root.getChildren().add(textBilgi);
 
         try {
@@ -288,7 +276,6 @@ public class HelloApplication extends Application {
             hareketliEngelOlustur(lokasyon, root);
             YazEngelOlustur(lokasyon, root);
             KisEngelOlustur(lokasyon, root);
-
 
             KarakterOlustur(lokasyon, root);
             lokasyon.HaritaMatrisYazdir();
@@ -316,7 +303,6 @@ public class HelloApplication extends Application {
 
                             Kordinat kordinat = new Kordinat(point[1], point[0]);
                             kordinatArrayListKarakter.add(kordinat);
-
                         }
                     }
 
@@ -326,18 +312,152 @@ public class HelloApplication extends Application {
 
                 }
             }
-
-
         } catch (CloneNotSupportedException e) {
             throw new RuntimeException(e);
         }
+        textBilgi.setText("BİLGİ");
 
     }
 
     private void sayfa4(Group root, Stage primaryStage) {
-        //oyun sonu tasasrımı yapılacak
 
+        primaryStage.setTitle("ANA EKRAN 4");
+        Canvas canvas = new Canvas(GENISLIK, YUKSEKLIK);
+
+        root.getChildren().add(canvas);
+        Scene scene1 = new Scene(root);
+        primaryStage.setScene(scene1);
+        primaryStage.show();
+
+        Text text1Ust = new Text("OYUN BİTTİ");
+        text1Ust.setFont(Font.font("Arial", 60));
+        text1Ust.setX(300);
+        text1Ust.setY(100);
+        root.getChildren().add(text1Ust);
+
+        Text textToplanan = new Text("Toplanan Hazineler");
+        textToplanan.setFont(Font.font("Arial", 24));
+        textToplanan.setX(50);
+        textToplanan.setY(200);
+        root.getChildren().add(textToplanan);
+
+        ArrayList<Hazine> Altin = new ArrayList<>();
+        ArrayList<Hazine> Gumus = new ArrayList<>();
+        ArrayList<Hazine> Zumrut = new ArrayList<>();
+        ArrayList<Hazine> Bakir = new ArrayList<>();
+
+        Altin.clear();
+        Gumus.clear();
+        Zumrut.clear();
+        Bakir.clear();
+
+        for (Hazine hazine : hazineArrayListYedek){
+            if (hazine.getAd().equals("altin.png")){
+                Altin.add(hazine);
+            }
+            if (hazine.getAd().equals("gumus.png")){
+                Gumus.add(hazine);
+            }
+            if (hazine.getAd().equals("zumrut.png")){
+                Zumrut.add(hazine);
+            }
+            if (hazine.getAd().equals("bakir.png")){
+                Bakir.add(hazine);
+            }
+        }
+
+        Text textDeger = new Text("Değer Sırası");
+        textDeger.setFont(Font.font("Arial", 16));
+        textDeger.setX(40);
+        textDeger.setY(230);
+        root.getChildren().add(textDeger);
+
+        int a=0;
+        for (Hazine hazine : Altin){
+            int noktaIndex = hazine.getAd().indexOf('.');
+            Text textAltin = new Text(hazine.getAd().substring(0, noktaIndex).toUpperCase()+ " (" + (hazine.getX()+1)+") "+"("+(hazine.getY()+1)+") konumunda bulundu" );
+            textAltin.setFont(Font.font("Arial", 10));
+            textAltin.setX(40);
+            textAltin.setY(250 +a);
+            root.getChildren().add(textAltin);
+            a+=12;
+        }
+        a+=15;
+        for (Hazine hazine : Gumus){
+            int noktaIndex = hazine.getAd().indexOf('.');
+            Text textGumus = new Text(hazine.getAd().substring(0, noktaIndex).toUpperCase()+ " (" + (hazine.getX()+1)+") "+"("+(hazine.getY()+1)+") konumunda bulundu" );
+            textGumus.setFont(Font.font("Arial", 10));
+            textGumus.setX(40);
+            textGumus.setY(250 +a);
+            root.getChildren().add(textGumus);
+            a+=12;
+        }
+        a+=12;
+        for (Hazine hazine : Zumrut){
+            int noktaIndex = hazine.getAd().indexOf('.');
+            Text textZumrut = new Text(hazine.getAd().substring(0, noktaIndex).toUpperCase()+ " (" + (hazine.getX()+1)+") "+"("+(hazine.getY()+1)+") konumunda bulundu" );
+            textZumrut.setFont(Font.font("Arial", 10));
+            textZumrut.setX(40);
+            textZumrut.setY(250 +a);
+            root.getChildren().add(textZumrut);
+            a+=12;
+        }
+        a+=12;
+        for (Hazine hazine : Bakir){
+            int noktaIndex = hazine.getAd().indexOf('.');
+            Text textBakir = new Text(hazine.getAd().substring(0, noktaIndex).toUpperCase()+ " (" + (hazine.getX()+1)+") "+"("+(hazine.getY()+1)+") konumunda bulundu" );
+            textBakir.setFont(Font.font("Arial", 10));
+            textBakir.setX(40);
+            textBakir.setY(250 +a);
+            root.getChildren().add(textBakir);
+            a+=12;
+        }
+        a+=30;
+
+        Text textSira = new Text("Toplanan Sıra");
+        textSira.setFont(Font.font("Arial", 16));
+        textSira.setX(40);
+        textSira.setY(250+a);
+        root.getChildren().add(textSira);
+        a+=20;
+
+        for (Hazine hazine : hazineArrayListToplamaSirasi){
+            int noktaIndex = hazine.getAd().indexOf('.');
+            Text textSiraHazine = new Text(hazine.getAd().substring(0, noktaIndex).toUpperCase()+ " (" + (hazine.getX()+1)+") "+"("+(hazine.getY()+1)+") konumunda bulundu" );
+            textSiraHazine.setFont(Font.font("Arial", 10));
+            textSiraHazine.setX(40);
+            textSiraHazine.setY(250 +a);
+            root.getChildren().add(textSiraHazine);
+            a+=12;
+        }
+
+        Text textKesfedilen = new Text("Keşfedilen Engeller");
+        textKesfedilen.setFont(Font.font("Arial", 24));
+        textKesfedilen.setX(380);
+        textKesfedilen.setY(200);
+        root.getChildren().add(textKesfedilen);
+
+        Text textKordinat = new Text("Gidilen Kordinatlar");
+        textKordinat.setFont(Font.font("Arial", 24));
+        textKordinat.setX(720);
+        textKordinat.setY(200);
+        root.getChildren().add(textKordinat);
+
+        int i = 0;
+        int j = 0;
+
+        for (Kordinat kordinat : kordinatArrayListKarakter){
+
+            Text textKordinatBilgi = new Text("("+ (kordinat.x+1) + ")" + " (" + (kordinat.y+1) +")  ");
+            textKordinatBilgi.setFont(Font.font("Arial", 11));
+            textKordinatBilgi.setX(700 + j);
+            textKordinatBilgi.setY(250 + i);
+            root.getChildren().add(textKordinatBilgi);
+            i+=15;
+            if (i+250>980){
+                i=0;
+                j+=50;
+            }
+        }
     }
-
-
 }
