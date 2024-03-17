@@ -1,5 +1,7 @@
 package org.efs.demo;
 
+import java.util.ArrayList;
+
 public class Engel implements Cloneable {
 
     private String ad;
@@ -8,6 +10,7 @@ public class Engel implements Cloneable {
     private int engelY;
     private int engelBoy;
     private int engelGenislik;
+    static ArrayList<Engel> engelArrayList = new ArrayList<>();
 
     public Engel(String imagePath,String ad, int engelX, int engelY, int engelBoy, int engelGenislik) {
         this.setEngelX(engelX);
@@ -34,13 +37,6 @@ public class Engel implements Cloneable {
         this.engelY = engelY;
     }
 
-    protected Engel clone() throws CloneNotSupportedException {
-        try {
-            return (Engel) super.clone();
-        } catch (CloneNotSupportedException e) {
-            return null;
-        }
-    }
 
     public String getImagePath() {
         return imagePath;
@@ -58,9 +54,7 @@ public class Engel implements Cloneable {
         this.ad = ad;
     }
 
-    public int getEngelBoy() {
-        return engelBoy;
-    }
+    public int getEngelBoy() {return engelBoy;}
 
     public void setEngelBoy(int engelBoy) {
         this.engelBoy = engelBoy;
@@ -72,5 +66,13 @@ public class Engel implements Cloneable {
 
     public void setEngelGenislik(int engelGenislik) {
         this.engelGenislik = engelGenislik;
+    }
+
+    protected Engel clone() throws CloneNotSupportedException {
+        try {
+            return (Engel) super.clone();
+        } catch (CloneNotSupportedException e) {
+            return null;
+        }
     }
 }

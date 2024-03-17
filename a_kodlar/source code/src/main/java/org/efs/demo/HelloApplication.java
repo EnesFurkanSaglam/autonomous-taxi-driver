@@ -15,15 +15,17 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import java.util.*;
-import static org.efs.demo.HareketliEngel.hareketEttir;
-import static org.efs.demo.HareketliEngel.hareketliEngelOlustur;
+
+import static org.efs.demo.HareketliEngel.*;
 import static org.efs.demo.HareketsizEngelKis.KisEngelOlustur;
 import static org.efs.demo.HareketsizEngelYaz.YazEngelOlustur;
 import static org.efs.demo.Hazine.*;
 import static org.efs.demo.Karakter.*;
 import static org.efs.demo.Kordinat.kordinatArrayListKarakter;
 import static org.efs.demo.Lokasyon.KORDINATLAR;
-import static org.efs.demo.Uygulama.findShortestPath;
+import static org.efs.demo.Sis.Sisle;
+import static org.efs.demo.Uygulama.enKisaYoluBul;
+
 
 public class HelloApplication extends Application {
 
@@ -48,6 +50,7 @@ public class HelloApplication extends Application {
     static int hareketliEngelSayi;
     static int hazineSayisi;
     static Text textBilgi = new Text("BİLGİ");
+    static Text textBilgiKesfedilen = new Text("KEŞFEDİLEN");
 
 
     public static void main(String[] args) {
@@ -79,16 +82,21 @@ public class HelloApplication extends Application {
 
                 button4Baslat.setOnAction(actionEvent1 -> {
 
+
+                    Sisle(group3); // Sis kısmını 20*20 de yapacağız fazla sis hata veriyor
                     karakterHareket();
                     hareketEttir();
+
 
                 });
                 button5Sifirla.setOnAction(actionEvent1 -> {
 
                     hazineArrayListToplamaSirasi.clear();
-
+                    engelArrayList.clear();
+                    hazineArrayListYedek.clear();
                     group3.getChildren().clear();
                     sayfa3(group3, primaryStage);
+
                 });
                 button3.setOnAction(actionEvent1 -> {
                     Group group4 = new Group();
@@ -265,9 +273,14 @@ public class HelloApplication extends Application {
         textBilgi.setFont(Font.font("Arial", FontWeight.BOLD, 20));
         textBilgi.setX(800);
         textBilgi.setY(50);
-        textBilgi.setFill(Color.RED);
-
+        textBilgi.setFill(Color.BLUE);
         root.getChildren().add(textBilgi);
+
+        textBilgiKesfedilen.setFont(Font.font("Arial", FontWeight.BOLD, 20));
+        textBilgiKesfedilen.setX(800);
+        textBilgiKesfedilen.setY(100);
+        textBilgiKesfedilen.setFill(Color.BLUE);
+        root.getChildren().add(textBilgiKesfedilen);
 
         try {
 
@@ -292,7 +305,7 @@ public class HelloApplication extends Application {
 
                     int[] start = {karakter.getIlkKonumY(), karakter.getIlkKonumX()};    //  y-x die gircez
                     int[] target = {hazine.getY(), hazine.getX()};   //   y-x die gircez
-                    List<int[]> path = findShortestPath(KORDINATLAR, start, target);
+                    List<int[]> path = enKisaYoluBul(KORDINATLAR, start, target);
 
                     if (path.size() == 0) {
                         System.out.println("Hedefe ulaşılamadı.");
@@ -431,11 +444,40 @@ public class HelloApplication extends Application {
             a+=12;
         }
 
-        Text textKesfedilen = new Text("Keşfedilen Engeller");
+        Text textKesfedilen = new Text("Keşfedilenler");
         textKesfedilen.setFont(Font.font("Arial", 24));
         textKesfedilen.setX(380);
         textKesfedilen.setY(200);
         root.getChildren().add(textKesfedilen);
+
+        int k = 0;
+
+        for (Hazine hazine : hazineKesfedilen){
+            int noktaIndex = hazine.getAd().indexOf('.');
+            String ad = hazine.getAd().substring(0, noktaIndex);
+            ad = ad.toUpperCase();
+            Text textKesfedilenHazine = new Text(ad+ " (" +(hazine.getX()+1)+") "+ "(" +(hazine.getY()+1)+") konumunda keşfedildi");
+            textKesfedilenHazine.setFont(Font.font("Arial", 12));
+            textKesfedilenHazine.setX(380);
+            textKesfedilenHazine.setY(250 + k);
+            root.getChildren().add(textKesfedilenHazine);
+            k+=20;
+        }
+
+        for (Engel engel : engelKesfedilen){
+            int noktaIndex = engel.getAd().indexOf('.');
+            String ad = engel.getAd().substring(0, noktaIndex);
+            ad = ad.toUpperCase();
+            Text textKesfedilenEngel = new Text(ad+ " (" +(engel.getEngelX()+1)+") "+ "(" +(engel.getEngelY()+1)+") konumunda keşfedildi");
+            textKesfedilenEngel.setFont(Font.font("Arial", 12));
+            textKesfedilenEngel.setX(380);
+            textKesfedilenEngel.setY(250 + k);
+            root.getChildren().add(textKesfedilenEngel);
+            k+=20;
+        }
+
+
+
 
         Text textKordinat = new Text("Gidilen Kordinatlar");
         textKordinat.setFont(Font.font("Arial", 24));

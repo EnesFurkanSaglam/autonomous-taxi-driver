@@ -79,6 +79,7 @@ public class HareketsizEngelKis extends HareketsizEngel {
                             ,yerlestirilecekKisEngeli.getEngelX() + 1, yerlestirilecekKisEngeli.getEngelY() + 1);
 
                     hareketsizEngelKisArrayList.add(yerlestirilecekKisEngeli);
+                    engelArrayList.add(yerlestirilecekKisEngeli);
 
                     break;
                 }

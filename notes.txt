@@ -67,7 +67,7 @@ eksikler::::::
 kırmızı
 hareketli engellerin hareketi
 sisle beraber gelen bilgi
-son ekranda toplam bilgi
+
 
 
 

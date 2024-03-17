@@ -6,10 +6,12 @@ import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
+import static org.efs.demo.Engel.engelArrayList;
 import static org.efs.demo.Hazine.*;
 import static org.efs.demo.HelloApplication.*;
 import static org.efs.demo.HelloApplication.KARE_YUKSEKLIK;
 import static org.efs.demo.Kordinat.kordinatArrayListKarakter;
+import static org.efs.demo.Sis.sisArrayListImageView;
 
 public class Karakter {
 
@@ -35,10 +37,22 @@ public class Karakter {
     static Karakter karakter = new Karakter(1,"doblo.png","file:///C:/BEN/Kodlar/Proje/Proje_9_Uni_ProLab2_1/a_png/Karakter/",
             0,0,1,1);
 
+
+
+    static ArrayList<Hazine> hazineKesfedilen = new ArrayList<>();
+    static ArrayList<Engel> engelKesfedilen = new ArrayList<>();
+
+
+
+
+
     public static void KarakterOlustur(Lokasyon lokasyon, Group root){
 
-        imageViewKarakter =null;
-        hazineArrayListToplamaSirasi.clear();
+        imageViewKarakter = null;
+        hazineKesfedilen.clear();
+        engelKesfedilen.clear();
+
+
 
         int kontrol;
 
@@ -96,6 +110,7 @@ public class Karakter {
 
     public static void karakterHareket() {
 
+
         AtomicInteger index = new AtomicInteger(0);
         Timer timer = new Timer();
         timer.scheduleAtFixedRate(new TimerTask() {
@@ -107,6 +122,59 @@ public class Karakter {
                     imageViewKarakter.setX(kordinat.x * KARE_BOYUTU);
                     imageViewKarakter.setY(kordinat.y * KARE_BOYUTU);
 
+
+                    for (ImageView imageView : sisArrayListImageView){
+
+                        for (int i = kordinat.x - 3; i <= kordinat.x + 3; i++) {
+
+                            for (int j = kordinat.y - 3; j <= kordinat.y + 3; j++) {
+
+                                if ((double) i * KARE_BOYUTU == imageView.getX() && (double) j * KARE_BOYUTU == imageView.getY()) {
+
+                                    imageView.setVisible(false);
+
+                                    for (Engel engel : engelArrayList){
+
+                                        if (engel.getEngelX() == i && engel.getEngelY() == j){
+
+                                            int noktaIndex = engel.getAd().indexOf('.');
+                                            String ad = engel.getAd().substring(0, noktaIndex);
+                                            ad = ad.toUpperCase();
+                                            textBilgiKesfedilen.setText(ad + " KEŞFEDİLDİ");
+
+                                            if (!engelKesfedilen.contains(engel)){
+                                                engelKesfedilen.add(engel);
+                                            }
+
+                                        }
+
+
+
+                                    }
+
+                                    for (Hazine hazine : hazineArrayListYedek){
+
+                                        if (hazine.getX() == i && hazine.getY() == j){
+                                            int noktaIndex = hazine.getAd().indexOf('.');
+                                            String ad = hazine.getAd().substring(0, noktaIndex);
+                                            ad = ad.toUpperCase();
+
+                                            textBilgiKesfedilen.setText(ad + " KEŞFEDİLDİ");
+
+                                            if (!hazineKesfedilen.contains(hazine)){
+                                                hazineKesfedilen.add(hazine);
+                                            }
+
+                                        }
+                                    }
+
+                                }
+                            }
+                        }
+                    }
+
+
+
                     for (Hazine hazine : hazineArrayListYedek){
                         if (hazine.getX() ==kordinat.x && hazine.getY() == kordinat.y){
                             int noktaIndex = hazine.getAd().indexOf('.');
@@ -117,6 +185,8 @@ public class Karakter {
                             }
                             textBilgi.setText(ad + " ALINDI");
 
+
+
                             for (ImageView imageView : hazineImageViews){
                                 if (imageView.getId().equals(hazine.getAd()) && imageView.getX() == (double)hazine.getX() * KARE_BOYUTU){
                                     imageView.setVisible(false);
@@ -124,6 +194,7 @@ public class Karakter {
                             }
                         }
                     }
+
 
                     gc.setFill(Color.web("#008000"));
                     gc.fillRect(kordinat.x * KARE_BOYUTU, kordinat.y* KARE_BOYUTU, KARE_BOYUTU, KARE_BOYUTU);
@@ -134,7 +205,7 @@ public class Karakter {
                     }
                 });
             }
-        }, 0, 100); // 100 milisaniye (0.1 saniye) aralıklarla hareket et
+        }, 0, 100);
     }
 
     public void setID(int ID) {

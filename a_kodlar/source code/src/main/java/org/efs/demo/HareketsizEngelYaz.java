@@ -3,7 +3,6 @@ package org.efs.demo;
 import javafx.scene.Group;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -80,6 +79,7 @@ public class HareketsizEngelYaz extends HareketsizEngel {
                             ,yerlestirilecekYazEngeli.getEngelX()+1, yerlestirilecekYazEngeli.getEngelY()+1);
 
                     hareketsizEngelYazArrayList.add(yerlestirilecekYazEngeli);
+                    engelArrayList.add(yerlestirilecekYazEngeli);
 
                     break;
                 }

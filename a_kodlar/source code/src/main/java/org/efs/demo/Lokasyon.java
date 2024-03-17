@@ -54,6 +54,7 @@ public class Lokasyon implements Cloneable {
 
 
                         }
+
                     }
                 }
 
