@@ -18,10 +18,9 @@ public class HareketliEngel extends Engel {
         this.setHareketBoyutu(hareketBoyutu);
     }
 
-    static Engel kus = new HareketliEngel("file:///C:/BEN/Kodlar/Proje/Proje_9_Uni_ProLab2_1/a_png/Hareketli Engeller/",
-            "kus.png", 0, 0, 2, 2, "Y", 5);
-    static Engel ari = new HareketliEngel("file:///C:/BEN/Kodlar/Proje/Proje_9_Uni_ProLab2_1/a_png/Hareketli Engeller/",
-            "ari.png", 0, 0, 2, 2, "X", 5);
+    static Engel kus = new HareketliEngel(Objects.requireNonNull(HareketliEngel.class.getResource("/png/")).toExternalForm(), "kus.png", 0, 0, 2, 2, "Y", 5);
+    static Engel ari = new HareketliEngel(Objects.requireNonNull(HareketliEngel.class.getResource("/png/")).toExternalForm(), "ari.png", 0, 0, 2, 2, "X", 5);
+
     static Engel[] hareketliEngeller = {kus, ari};
     private static List<HareketliEngel> hareketliEngelArrayList = new ArrayList<>();
     private static List<ImageView> hareketliEngelImageViews = new ArrayList<>();

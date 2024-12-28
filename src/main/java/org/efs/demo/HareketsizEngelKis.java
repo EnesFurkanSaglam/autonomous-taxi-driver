@@ -4,6 +4,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Random;
 import static org.efs.demo.HelloApplication.*;
 import static org.efs.demo.HelloApplication.KARE_BOYUTU;
@@ -14,16 +15,17 @@ public class HareketsizEngelKis extends HareketsizEngel {
         super(imagePath, ad, engelX, engelY, engelBoy, engelGenislik);
     }
 
-    static Engel buzdagi = new HareketsizEngelKis("file:///C:/BEN/Kodlar/Proje/Proje_9_Uni_ProLab2_1/a_png/Kış Engelleri/",
-            "buz dagi.png",0,0,6,6);
-    static Engel kutupayisi = new HareketsizEngelKis("file:///C:/BEN/Kodlar/Proje/Proje_9_Uni_ProLab2_1/a_png/Kış Engelleri/",
-            "kutup ayisi.png",0,0,5,5);
-     static Engel penguen = new HareketsizEngelKis("file:///C:/BEN/Kodlar/Proje/Proje_9_Uni_ProLab2_1/a_png/Kış Engelleri/",
-            "penguen.png",0,0,5,5);
-    static Engel kardanadam = new HareketsizEngelKis("file:///C:/BEN/Kodlar/Proje/Proje_9_Uni_ProLab2_1/a_png/Kış Engelleri/",
-            "kardan adam.png",0,0,5,5);
-    static Engel buz = new HareketsizEngelKis("file:///C:/BEN/Kodlar/Proje/Proje_9_Uni_ProLab2_1/a_png/Kış Engelleri/",
-            "buz.png",0,0,2,2);
+    static Engel buzdagi = new HareketsizEngelKis(Objects.requireNonNull(HareketsizEngelKis.class.getResource("/png/")).toExternalForm(),
+            "buz dagi.png", 0, 0, 6, 6);
+    static Engel kutupayisi = new HareketsizEngelKis(Objects.requireNonNull(HareketsizEngelKis.class.getResource("/png/")).toExternalForm(),
+            "kutup ayisi.png", 0, 0, 5, 5);
+    static Engel penguen = new HareketsizEngelKis(Objects.requireNonNull(HareketsizEngelKis.class.getResource("/png/")).toExternalForm(),
+            "penguen.png", 0, 0, 5, 5);
+    static Engel kardanadam = new HareketsizEngelKis(Objects.requireNonNull(HareketsizEngelKis.class.getResource("/png/")).toExternalForm(),
+            "kardan adam.png", 0, 0, 5, 5);
+    static Engel buz = new HareketsizEngelKis(Objects.requireNonNull(HareketsizEngelKis.class.getResource("/png/")).toExternalForm(),
+            "buz.png", 0, 0, 2, 2);
+
 
     static Engel[] kisEngelleri = {buzdagi,kutupayisi,penguen,kardanadam,buz};
     static ArrayList<HareketsizEngelKis> hareketsizEngelKisArrayList = new ArrayList<>();

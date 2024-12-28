@@ -34,8 +34,10 @@ public class Karakter {
     private int ilkKonumY;
     static ImageView imageViewKarakter;
 
-    static Karakter karakter = new Karakter(1,"doblo.png","file:///C:/BEN/Kodlar/Proje/Proje_9_Uni_ProLab2_1/a_png/Karakter/",
-            0,0,1,1);
+    static Karakter karakter = new Karakter(1, "doblo.png",
+            Objects.requireNonNull(Karakter.class.getResource("/png/")).toExternalForm(),
+            0, 0, 1, 1);
+
 
 
 

@@ -83,7 +83,8 @@ public class HelloApplication extends Application {
                 button4Baslat.setOnAction(actionEvent1 -> {
 
 
-                    Sisle(group3); // Sis kısmını 20*20 de yapacaz fazla sis hata veriyor
+                    // Sis kısmını 20*20 de yapacaz fazla sis hata veriyor
+                    //Sisle(group3);
                     karakterHareket();
                     hareketEttir();
 
@@ -151,7 +152,7 @@ public class HelloApplication extends Application {
         text1Alt.setY(720);
         group.getChildren().add(text1Alt);
 
-        Image imageUst = new Image("file:///C:/BEN/Kodlar/Proje/Proje_9_Uni_ProLab2_1/a_png/AnaEkran/" + "fotoUst.jpg");
+        Image imageUst = new Image(getClass().getResource("/png/fotoUst.jpg").toExternalForm());
         ImageView imageViewUst = new ImageView(imageUst);
         imageViewUst.setFitWidth(799);
         imageViewUst.setFitHeight(444);
@@ -159,10 +160,11 @@ public class HelloApplication extends Application {
         imageViewUst.setY(150);
         group.getChildren().add(imageViewUst);
 
-        Image imageAlt = new Image("file:///C:/BEN/Kodlar/Proje/Proje_9_Uni_ProLab2_1/a_png/AnaEkran/" + "doblo.png");
+        Image imageAlt = new Image(getClass().getResource("/png/doblo.png").toExternalForm());
         ImageView imageViewAlt = new ImageView(imageAlt);
-        imageViewAlt.setX(50);
-        imageViewAlt.setY(550);
+        imageViewAlt.setX(30);
+        imageViewAlt.setY(600);
+
         group.getChildren().add(imageViewAlt);
 
     }
@@ -182,9 +184,9 @@ public class HelloApplication extends Application {
         button2.setLayoutY(850);
         group.getChildren().add(button2);
 
-        Image imageAlt = new Image("file:///C:/BEN/Kodlar/Proje/Proje_9_Uni_ProLab2_1/a_png/AnaEkran/" + "doblo.png");
+        Image imageAlt = new Image(getClass().getResource("/png/doblo.png").toExternalForm());
         ImageView imageViewAlt = new ImageView(imageAlt);
-        imageViewAlt.setX(100);
+        imageViewAlt.setX(70);
         imageViewAlt.setY(50);
         group.getChildren().add(imageViewAlt);
 

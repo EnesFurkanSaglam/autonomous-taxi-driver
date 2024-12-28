@@ -5,6 +5,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import static org.efs.demo.HelloApplication.*;
 import static org.efs.demo.HelloApplication.KARE_BOYUTU;
@@ -12,8 +13,8 @@ import static org.efs.demo.HelloApplication.KARE_BOYUTU;
 
 public class Sis implements Cloneable{
 
-    static Sis sis = new Sis("file:///C:/BEN/Kodlar/Proje/Proje_9_Uni_ProLab2_1/a_png/sis/",
-            "sis.png",0,0);
+    static Sis sis = new Sis(Objects.requireNonNull(Sis.class.getResource("/png/")).toExternalForm(),"sis.png", 0, 0);
+
     static ArrayList<ImageView> sisArrayListImageView = new ArrayList<>();
 
     public Sis(String imagePath, String ad , int x, int y) {
@@ -76,6 +77,8 @@ public class Sis implements Cloneable{
     public void setY(int y) {
         Y = y;
     }
+
+
     protected Engel clone() throws CloneNotSupportedException {
         try {
             return (Engel) super.clone();

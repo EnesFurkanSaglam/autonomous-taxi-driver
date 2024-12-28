@@ -3,6 +3,7 @@ package org.efs.demo;
 import javafx.scene.Group;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import java.util.Objects;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,14 +32,16 @@ public class Hazine  implements Cloneable {
     private int Boy;
     private int Genislik;
     private double karaktereUzaklik;
-    static Hazine altin = new Hazine("file:///C:/BEN/Kodlar/Proje/Proje_9_Uni_ProLab2_1/a_png/hazine/",
-            "altin.png",0,0,2,2,0);
-    static Hazine bakir = new Hazine("file:///C:/BEN/Kodlar/Proje/Proje_9_Uni_ProLab2_1/a_png/hazine/",
-            "bakir.png",0,0,2,2,0);
-    static Hazine gumus = new Hazine("file:///C:/BEN/Kodlar/Proje/Proje_9_Uni_ProLab2_1/a_png/hazine/",
-            "gumus.png",0,0,2,2,0);
-    static Hazine zumrut = new Hazine("file:///C:/BEN/Kodlar/Proje/Proje_9_Uni_ProLab2_1/a_png/hazine/",
-            "zumrut.png",0,0,2,2,0);
+
+    static Hazine altin = new Hazine(Objects.requireNonNull(Hazine.class.getResource("/png/")).toExternalForm(),
+            "altin.png", 0, 0, 2, 2, 0);
+    static Hazine bakir = new Hazine(Objects.requireNonNull(Hazine.class.getResource("/png/")).toExternalForm(),
+            "bakir.png", 0, 0, 2, 2, 0);
+    static Hazine gumus = new Hazine(Objects.requireNonNull(Hazine.class.getResource("/png/")).toExternalForm(),
+            "gumus.png", 0, 0, 2, 2, 0);
+    static Hazine zumrut = new Hazine(Objects.requireNonNull(Hazine.class.getResource("/png/")).toExternalForm(),
+            "zumrut.png", 0, 0, 2, 2, 0);
+
 
 
     static Hazine [] hazineler = {altin,bakir,gumus,zumrut};

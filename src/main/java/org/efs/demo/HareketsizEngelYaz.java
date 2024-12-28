@@ -5,6 +5,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Random;
 
 import static org.efs.demo.HelloApplication.*;
@@ -15,16 +16,17 @@ public class HareketsizEngelYaz extends HareketsizEngel {
         super(imagePath, ad, engelX, engelY, engelBoy, engelGenislik);
     }
 
-    static Engel agac = new HareketsizEngelYaz("file:///C:/BEN/Kodlar/Proje/Proje_9_Uni_ProLab2_1/a_png/Yaz Engelleri/",
-            "agac.png",-1,-1,5,5);
-    static Engel dag = new HareketsizEngelYaz("file:///C:/BEN/Kodlar/Proje/Proje_9_Uni_ProLab2_1/a_png/Yaz Engelleri/",
-            "dag.png",-1,-1,5,5);
-    static Engel duvar = new HareketsizEngelYaz("file:///C:/BEN/Kodlar/Proje/Proje_9_Uni_ProLab2_1/a_png/Yaz Engelleri/",
-            "duvar.png",-1,-1,3,3);
-    static Engel kaya = new HareketsizEngelYaz("file:///C:/BEN/Kodlar/Proje/Proje_9_Uni_ProLab2_1/a_png/Yaz Engelleri/",
-            "kaya.png",-1,-1,3,3);
-    static Engel gunes = new HareketsizEngelYaz("file:///C:/BEN/Kodlar/Proje/Proje_9_Uni_ProLab2_1/a_png/Yaz Engelleri/",
-            "gunes.png",-1,-1,2,2);
+    static Engel agac = new HareketsizEngelYaz(Objects.requireNonNull(HareketsizEngelYaz.class.getResource("/png/")).toExternalForm(),
+            "agac.png", -1, -1, 5, 5);
+    static Engel dag = new HareketsizEngelYaz(Objects.requireNonNull(HareketsizEngelYaz.class.getResource("/png/")).toExternalForm(),
+            "dag.png", -1, -1, 5, 5);
+    static Engel duvar = new HareketsizEngelYaz(Objects.requireNonNull(HareketsizEngelYaz.class.getResource("/png/")).toExternalForm(),
+            "duvar.png", -1, -1, 3, 3);
+    static Engel kaya = new HareketsizEngelYaz(Objects.requireNonNull(HareketsizEngelYaz.class.getResource("/png/")).toExternalForm(),
+            "kaya.png", -1, -1, 3, 3);
+    static Engel gunes = new HareketsizEngelYaz(Objects.requireNonNull(HareketsizEngelYaz.class.getResource("/png/")).toExternalForm(),
+            "gunes.png", -1, -1, 2, 2);
+
 
     static Engel[] yazEngelleri = {agac,dag,duvar,kaya,gunes};
     static ArrayList<HareketsizEngelYaz> hareketsizEngelYazArrayList = new ArrayList<>();
